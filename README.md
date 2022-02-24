@@ -1,5 +1,9 @@
-# Spring 2022 - CS353 Group 15
+# 
 
+### Project Proposal
+[Download Project Prosopal](/denemepdf.pdf)
+
+# Group Information
 Our project is an Online Coding Platform.<br /><br />
 Group members:
   - Aybala Karakaya - 21801630
