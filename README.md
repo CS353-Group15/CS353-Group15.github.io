@@ -1,5 +1,5 @@
 ### Project Proposal
-[Download Project Prosopal](/denemepdf.pdf)
+[Download Project Proposal](/denemepdf.pdf)
 
 # Group Information
 Our project is an Online Coding Platform.<br /><br />
