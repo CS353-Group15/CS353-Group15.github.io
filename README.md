@@ -1,3 +1,6 @@
+### Design Report
+[Download Design Report](/Group15_design_report.pdf)
+
 ### Project Proposal
 [Download Project Proposal](/Group15.pdf)
 
