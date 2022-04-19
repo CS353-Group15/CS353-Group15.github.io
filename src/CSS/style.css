@@ -159,7 +159,7 @@ a:hover {
 .user-home-left-box-upper {
   width: 100%;
   padding: 12px;
-  border: gray solid 2px;
+  border: gray solid 1px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -193,7 +193,7 @@ a:hover {
   margin-top: 32px;
   padding: 12px;
   width: 100%;
-  border: gray solid 2px;
+  border: gray solid 1px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -233,7 +233,7 @@ a:hover {
 .user-home-right-box {
   width: 30%;
   padding: 12px;
-  border: green 1px solid;
+  border: gray 1px solid;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -261,7 +261,7 @@ a:hover {
   margin-top: 16px;
   padding: 12px;
   width: 100%;
-  border: gray solid 2px;
+  border: gray solid 1px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
