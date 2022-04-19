@@ -1,4 +1,4 @@
-/* Animations */
+/* ANIMATIONS */
 @keyframes zoom {
   from {
     transform: scale(1);
@@ -9,6 +9,34 @@
   }
 }
 
+@keyframes about {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+
+  25% {
+    left: 100%;
+    top: 0px;
+  }
+
+  50% {
+    left: 100%;
+    top: 100%;
+  }
+
+  75% {
+    left: 0px;
+    top: 100%;
+  }
+
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+/* END OF ANIMATIONS */
 body {
   background-color: #f0f0f0;
 }
@@ -17,6 +45,7 @@ a:hover {
   color: red;
 }
 
+/* LOGIN AND REGISTER PAGES */
 .main-box {
   margin: 0 auto;
   padding: 20px;
@@ -44,7 +73,7 @@ a:hover {
   align-items: flex-start;
 }
 
-.surname {
+.data-box {
   margin-top: 16px;
   border: midnightblue 1px solid;
   border-radius: 8px;
@@ -52,8 +81,7 @@ a:hover {
   height: 48px;
 }
 
-.surname:focus {
-  border: yellow 1px solid;
+.data-box:focus {
   z-index: 100;
   animation-name: zoom;
   animation-duration: 0.5s;
@@ -61,21 +89,11 @@ a:hover {
   animation-fill-mode: forwards;
 }
 
-.password {
-  margin-top: 16px;
-  border: midnightblue 1px solid;
-  border-radius: 8px;
+.button-box {
   width: 80%;
-  height: 48px;
-}
-
-.password:focus {
-  border: yellow 1px solid;
-  z-index: 100;
-  animation-name: zoom;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: end;
 }
 
 .login {
@@ -92,3 +110,25 @@ a:hover {
 .left-footer {
   margin-top: 12px;
 }
+
+/* END OF LOGIN AND REGISTER PAGES */
+
+/* ABOUT */
+.about-box {
+  margin: 0 auto;
+  height: 250px;
+  padding: 20px;
+  margin-top: 100px;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+}
+
+.about {
+  position: relative;
+  animation-name: about;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* END OF ABOUT */
