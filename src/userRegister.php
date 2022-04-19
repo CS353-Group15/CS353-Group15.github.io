@@ -40,7 +40,7 @@
 
         <form action="register.php" method="POST" id="login">
           <div class="forms">
-            <input type="text" class="data-box" placeholder="Surname">
+            <input type="text" class="data-box" placeholder="Username">
             <input type="text" class="data-box" placeholder="Name">
             <input type="password" class="data-box" placeholder="Password">
             <div class="button-box">
