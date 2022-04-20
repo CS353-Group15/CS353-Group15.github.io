@@ -1,0 +1,291 @@
+/* ANIMATIONS */
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes about {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+
+  25% {
+    left: 100%;
+    top: 0px;
+  }
+
+  50% {
+    left: 100%;
+    top: 100%;
+  }
+
+  75% {
+    left: 0px;
+    top: 100%;
+  }
+
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+/* END OF ANIMATIONS */
+body {
+  background-color: #f0f0f0;
+}
+
+a:hover {
+  color: red;
+}
+
+/* LOGIN AND REGISTER PAGES */
+.main-box {
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 100px;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+}
+
+.left-box {
+  width: 80%;
+}
+
+.right-box {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.forms {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.data-box {
+  margin-top: 16px;
+  border: midnightblue 1px solid;
+  border-radius: 8px;
+  width: 80%;
+  height: 48px;
+}
+
+.data-box:focus {
+  z-index: 100;
+  animation-name: zoom;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.button-box {
+  width: 80%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: end;
+}
+
+.login {
+  margin-top: 16px;
+  width: 128px;
+  border-radius: 32px 0 32px 0;
+}
+
+.change-company {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.left-footer {
+  margin-top: 12px;
+}
+
+/* END OF LOGIN AND REGISTER PAGES */
+
+/* ABOUT */
+.about-box {
+  margin: 0 auto;
+  height: 250px;
+  padding: 20px;
+  margin-top: 100px;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+}
+
+.about {
+  position: relative;
+  animation-name: about;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* END OF ABOUT */
+
+/* USER HOME PAGE */
+.nav-links {
+  margin-right: 16px;
+}
+
+.mail {
+  font-size: x-large;
+}
+
+.user-home-content {
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 64px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-home-left-box {
+  width: 60%;
+}
+
+.user-home-left-box-upper {
+  width: 100%;
+  padding: 12px;
+  border: gray solid 1px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-home-left-box-upper-header {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-home-left-box-upper-content {
+  margin-top: 16px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-home-left-box-upper-challenge {
+  margin-top: 16px;
+  width: 100%;
+  text-decoration: none;
+  text-align: left;
+}
+
+.user-home-left-box-bottom {
+  margin-top: 32px;
+  padding: 12px;
+  width: 100%;
+  border: gray solid 1px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-home-left-box-bottom-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user-home-left-box-bottom-content {
+  margin-top: 16px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-home-left-box-bottom-contest {
+  margin-top: 16px;
+  width: 100%;
+  text-decoration: none;
+  text-align: left;
+}
+
+.user-home-left-box-bottom-footer {
+  margin-top: 16px;
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.user-home-right-box {
+  width: 30%;
+  padding: 12px;
+  border: gray 1px solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+}
+
+.user-home-right-box-header {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+}
+
+.user-home-right-box-content {
+  margin-top: 16px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-home-right-box-announcement {
+  margin-top: 16px;
+  padding: 12px;
+  width: 100%;
+  border: gray solid 1px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-home-right-box-announcement-save {
+  width: 100%;
+  margin-top: -4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.user-home-right-box-announcement-detail-link {
+  text-decoration: none;
+  color: green;
+  font-size: large;
+}
+
+.user-home-right-box-footer {
+  position: absolute;
+  bottom: 32px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
