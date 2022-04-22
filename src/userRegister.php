@@ -36,7 +36,7 @@
           $password = $_POST['password'];
 
           if ($username == "" && $name == "" && $email == "" && $password == "") {
-            echo '<script> alert("Please enter your username and password") </script>';
+            echo '<script> alert("Please enter your username, name, email and password") </script>';
             return;
           }
           else if ($username == "") {
@@ -83,7 +83,7 @@
         }
         ?>
 
-        <form action="userRegister.php" method="POST" id="login">
+        <form action="userRegister.php" method="POST" id="register">
           <div class="forms">
             <input type="text" class="data-box" placeholder="Username" name="username">
             <input type="text" class="data-box" placeholder="Name" name="name">
