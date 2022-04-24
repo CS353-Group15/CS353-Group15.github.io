@@ -1,4 +1,27 @@
-<?php ?>
+<?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: userLogin.php");
+}
+
+include("config.php");
+$username = $_SESSION['username'];
+$rs_challenges = $mysqli->query("" .
+                     "SELECT * " .
+                     "FROM Challenge ");
+
+$today_date = date("Y-m-d");
+$rs_contests = $mysqli->query("" .
+                    "SELECT * " .
+                    "FROM Contest " .
+                    "WHERE date >= '$today_date'");
+
+$rs_announcements = $mysqli->query("" .
+                    "SELECT * " .
+                    "FROM Announcement ");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +59,11 @@
             <a class="nav-link" href="userProfile.php">Your Profile</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-info btn-large" href="userLogin.php">Log Out</a>
+            <form action="userHomePage.php" method="POST" id="logout">
+              <div class="button-box">
+                <button class="btn btn-primary btn-large" type="submit" name="logout">Log Out</button>
+              </div>
+            </form>
           </li>
         </ul>
       </div>
@@ -52,10 +79,14 @@
           <button class="btn btn-danger">Random Challenge With Filters</button>
         </div>
         <div class="user-home-left-box-upper-content">
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Challenge 1</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Challenge 2</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Challenge 3</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Challenge 3</a>
+          <?php
+          while ($row = mysqli_fetch_array($rs_challenges)):
+            $item_id = $row['item_id'];
+            $difficulty = $row['difficulty'];
+
+            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Challenge $item_id, Difficulty: $difficulty </a>";
+          endwhile;
+          ?>
         </div>
       </div>
       <div class=" user-home-left-box-bottom">
@@ -63,8 +94,14 @@
           <h3>Upcoming Contests</h3>
         </div>
         <div class="user-home-left-box-bottom-content">
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest 1</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest 2</a>
+          <?php
+          while ($row = mysqli_fetch_array($rs_contests)):
+            $item_id = $row['item_id'];
+            $name = $row['name'];
+
+            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a>";
+          endwhile;
+          ?>
         </div>
         <div class="user-home-left-box-bottom-footer">
           <a href="#" class="btn btn-primary user-home-left-box-bottom-button">View Enrolled Contests</a>
@@ -76,45 +113,24 @@
         <h3>Announcements</h3>
       </div>
       <div class="user-home-right-box-content">
-        <div class="user-home-right-box-announcement">
-          <div class="user-home-right-box-announcement-save">
-            <a href="#" class="user-home-right-box-announcement-save-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
-                <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-              </svg>
-            </a>
-          </div>
-          <div class="user-home-right-box-announcement-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="user-home-right-box-announcement-detail-link"><strong>Announcement Title</strong></a>
-          </div>
-        </div>
-        <div class="user-home-right-box-announcement">
-          <div class="user-home-right-box-announcement-save">
-            <a href="#" class="user-home-right-box-announcement-save-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
-                <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-              </svg>
-            </a>
-          </div>
-          <div class="user-home-right-box-announcement-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="user-home-right-box-announcement-detail-link"><strong>Announcement Title</strong></a>
-          </div>
-        </div>
-        <div class="user-home-right-box-announcement">
-          <div class="user-home-right-box-announcement-save">
-            <a href="#" class="user-home-right-box-announcement-save-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
-                <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-              </svg>
-            </a>
-          </div>
-          <div class="user-home-right-box-announcement-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="user-home-right-box-announcement-detail-link"><strong>Announcement Title</strong></a>
-          </div>
-        </div>
+        <?php
+        while ($row = mysqli_fetch_array($rs_announcements)):
+          echo
+          "<div class=\"user-home-right-box-announcement\">
+            <div class=\"user-home-right-box-announcement-save\">
+              <a href=\"#\" class=\"user-home-right-box-announcement-save-button\">
+                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" fill=\"currentColor\" class=\"bi bi-archive\" viewBox=\"0 0 16 16\">
+                  <path d=\"M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z\" />
+                </svg>
+              </a>
+            </div>
+            <div class=\"user-home-right-box-announcement-detail\">
+              <h5>Company Name</h5>
+              <a href=\"#\" class=\"user-home-right-box-announcement-detail-link\"><strong>Announcement Title</strong></a>
+            </div>
+          </div>";
+        endwhile;
+        ?>
       </div>
       <div class="user-home-right-box-footer">
         <a href="" class="btn btn-primary">View Saved Announcements</a>
