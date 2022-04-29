@@ -74,7 +74,36 @@ $rs_announcements = $mysqli->query("" .
     <div class="user-home-left-box">
       <div class="user-home-left-box-upper">
         <div class="user-home-left-box-upper-header">
-          <button class="btn btn-primary">Filter</button>
+          <button class="btn btn-primary" id="userHomeFilterChallengeBtn">Filter</button>
+
+          <div id="challengeFilterBackground" class="modal-background">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p>Some text in the Modal..</p>
+            </div>
+          </div>
+
+          <script type="text/javascript">
+          var modal_background = document.getElementById("challengeFilterBackground");
+          var btn = document.getElementById("userHomeFilterChallengeBtn");
+          var close_span = document.getElementsByClassName("close")[0];
+
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
+
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
+          
+          </script>
+
           <h3>Challenges</h3>
           <button class="btn btn-danger">Random Challenge With Filters</button>
         </div>
