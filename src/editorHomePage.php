@@ -90,11 +90,24 @@ $rs_announcements = $mysqli->query("" .
             echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Interview $item_id</a>";
           endwhile;*/
           ?>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
+          </div>
         </div>
       </div>
       <div class=" user-home-left-box-bottom">
@@ -107,16 +120,27 @@ $rs_announcements = $mysqli->query("" .
             $item_id = $row['item_id'];
             $name = $row['name'];
 
-            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
           endwhile; */
           ?>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
+          </div>
+          <div class="user-all-announcements-content-bottom-links-box">
+            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
+          </div>
         </div>
         <div class="user-home-left-box-bottom-footer">
-          <a href="#" class="btn btn-primary user-home-left-box-bottom-button">View Sponsored Contests</a>
+          <a href="#" class="btn btn-primary user-home-left-box-bottom-button">Create New Contests</a>
         </div>
       </div>
     </div>
@@ -128,43 +152,40 @@ $rs_announcements = $mysqli->query("" .
         <?php /*
         while ($row = mysqli_fetch_array($rs_announcements)) :
           echo
-          "<div class=\"user-home-right-box-announcement\">
-            <div class=\"user-home-right-box-announcement-detail\">
-              <h5>Company Name</h5>
-              <a href=\"#\" class=\"user-home-right-box-announcement-detail-link\"><strong>Announcement Title</strong></a>
+          "<div class=\"editor-home-right-box-verify\">
+            <div class=\"editor-home-right-box-verify-detail\">
+              <h5 class=\"editor-home-right-box-verify-detail-top\">Company Name</h5>
+              <a href=\"#\" class=\"btn btn-primary\"><strong>Verify</strong></a>
             </div>
           </div>";
         endwhile; */
         ?>
         <!-- DELETE THESE -->
         <div class="editor-home-right-box-verify">
-          <div class="editor-home-right-box-verify-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-          </div>
+          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
+          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
         </div>
         <div class="editor-home-right-box-verify">
-          <div class="editor-home-right-box-verify-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-          </div>
+          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
+          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
         </div>
         <div class="editor-home-right-box-verify">
-          <div class="editor-home-right-box-verify-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-          </div>
+          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
+          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
         </div>
         <div class="editor-home-right-box-verify">
-          <div class="editor-home-right-box-verify-detail">
-            <h5>Company Name</h5>
-            <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-          </div>
+          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
+          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
         </div>
+        <div class="editor-home-right-box-verify">
+          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
+          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
+        </div>
+
         <!-- UNTIL HERE -->
       </div>
       <div class="user-home-right-box-footer">
-        <a href="" class="btn btn-primary">Post New Announcements</a>
+        <a href="#" class="btn btn-primary">View Verified Companies</a>
       </div>
     </div>
   </div>
