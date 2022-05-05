@@ -164,7 +164,7 @@ a:hover {
 .user-home-left-box-upper {
   width: 100%;
   padding: 12px;
-  border: gray solid 1px;
+  border: gray solid 2px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -198,13 +198,16 @@ a:hover {
   width: 100%;
   text-decoration: none;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-home-left-box-bottom {
   margin-top: 32px;
   padding: 12px;
   width: 100%;
-  border: gray solid 1px;
+  border: gray solid 2px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -237,6 +240,9 @@ a:hover {
   width: 100%;
   text-decoration: none;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-home-left-box-bottom-footer {
@@ -250,7 +256,7 @@ a:hover {
 .user-home-right-box {
   width: 30%;
   padding: 12px;
-  border: gray 1px solid;
+  border: gray 2px solid;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -302,6 +308,9 @@ a:hover {
   text-decoration: none;
   color: green;
   font-size: large;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-home-right-box-footer {
@@ -344,9 +353,27 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
+/*
 .editor-home-right-box-verify-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}*/
+
+.editor-home-right-box-verify-detail-top {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.editor-home-right-box-verify-detail-bottom {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -443,13 +470,15 @@ a:hover {
   align-items: center;
   overflow-y: scroll;
   padding-top: 16px;
-
 }
 
 .user-old-submission-content-links {
   width: 90%;
   text-align: left;
   margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* END OF USER OLD SUBMISSIONS */
@@ -496,14 +525,16 @@ a:hover {
 
 .user-all-announcements-content-bottom-links-box {
   width: 100%;
-  position: relative;
+
 }
 
 .user-all-announcements-content-bottom-links {
   width: 100%;
   text-align: left;
   margin-bottom: 16px;
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-all-announcements-content-bottom-links-save {
@@ -523,3 +554,126 @@ a:hover {
 }
 
 /* END OF USER ALL ANNOUNCEMENTS */
+
+/* USER ANNOUNCEMENT DETAIL */
+.user-announcement-detail {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.user-announcement-detail-left-box {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 72px;
+}
+
+.user-announcement-detail-left-box-button {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.user-announcement-detail-right-box {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-announcement-detail-right-box-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user-announcement-detail-right-box-header-save {
+  border: none;
+}
+
+.user-announcement-detail-right-box-content {
+  width: 100%;
+  margin-top: 32px;
+  border: gray 2px solid;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+/* END OF USER ANNOUNCEMENT DETAIL */
+
+/* MY ANNOUNCEMENTS */
+.company-all-announcements-content::-webkit-scrollbar {
+  display: none;
+}
+
+.company-all-announcements-content {
+  max-height: 512px;
+  width: 90%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.company-all-announcements-content-bottom-links {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* END OF MY ANNOUNCEMENTS */
+
+/* NEW ANNOUNCEMENT */
+.new-announcement-content {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-announcement-content-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.new-announcement-content-body {
+  width: 100%;
+  min-height: 256px;
+  max-height: 512px;
+}
+
+.new-announcement-content-title {
+  min-height: 62px;
+  margin-bottom: 32px;
+}
+
+.new-announcement-content-detail {
+  height: 420px;
+}
+
+.new-announcement-content-footer {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+/* END OF NEW ANNOUNCEMENT*/

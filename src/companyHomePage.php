@@ -83,7 +83,7 @@ $rs_announcements = $mysqli->query("" .
             $item_id = $row['item_id'];
             $difficulty = $row['difficulty'];
 
-            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Interview $item_id</a>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Interview $item_id</a></div>";
           endwhile;*/
           ?>
           <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
@@ -101,7 +101,7 @@ $rs_announcements = $mysqli->query("" .
             $item_id = $row['item_id'];
             $name = $row['name'];
 
-            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
           endwhile; */
           ?>
           <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
