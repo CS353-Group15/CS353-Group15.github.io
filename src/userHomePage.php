@@ -21,6 +21,13 @@ $rs_contests = $mysqli->query("" .
 $rs_announcements = $mysqli->query("" .
                     "SELECT * " .
                     "FROM Announcement ");
+
+if (isset($_POST['filterChallenge'])) {
+  $rs_challenges = $mysqli->query("" .
+                       "SELECT * " .
+                       "FROM Challenge " .
+                       "WHERE item_id = '1' ");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +38,9 @@ $rs_announcements = $mysqli->query("" .
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BilkentCodes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" rel="stylesheet"/>
   <link rel="stylesheet" href="CSS/style.css">
 
   <script>
@@ -76,32 +86,52 @@ $rs_announcements = $mysqli->query("" .
         <div class="user-home-left-box-upper-header">
           <button class="btn btn-primary" id="userHomeFilterChallengeBtn">Filter</button>
 
-          <div id="challengeFilterBackground" class="modal-background">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <p>Some text in the Modal..</p>
+          <form action="userHomePage.php" method="POST">
+            <div id="challengeFilterBackground" class="modal-background">
+              <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <script type="text/javascript">
+                $(document).ready(function() {
+                  var s2 = $("#filterChallengeSelect").select2({
+                      placeholder: "Categories",
+                      tags: true
+                  });
+
+                  var vals = ["Trees", "Hashing", "Strings"];
+
+                  vals.forEach(function(e){
+                  if(!s2.find('option:contains(' + e + ')').length)
+                    s2.append($('<option>').text(e));
+                  });
+                });
+                </script>
+                <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width:100%;" id="filterChallengeSelect"></select>
+                <div style="display:flex; flex-direction: row-reverse; justify-content: end;">
+                  <button class="btn btn-primary btn-large" type="submit" name="filterChallenge" style="margin:10px">Filter Challenges</button>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
 
           <script type="text/javascript">
           var modal_background = document.getElementById("challengeFilterBackground");
           var btn = document.getElementById("userHomeFilterChallengeBtn");
-          var close_span = document.getElementsByClassName("close")[0];
+          var close_span = document.getElementsByClassName("modal-close")[0];
 
           btn.onclick = function() {
-            modal.style.display = "block";
+            modal_background.style.display = "block";
           }
 
-          span.onclick = function() {
-            modal.style.display = "none";
+          close_span.onclick = function() {
+            modal_background.style.display = "none";
           }
 
-          window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.style.display = "none";
+          modal_background.onclick = function(event) {
+            if (event.target == modal_background) {
+              modal_background.style.display = "none";
             }
           }
-          
+
           </script>
 
           <h3>Challenges</h3>
