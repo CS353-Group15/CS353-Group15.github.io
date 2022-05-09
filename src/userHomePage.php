@@ -22,7 +22,7 @@ $rs_announcements = $mysqli->query("" .
                     "SELECT * " .
                     "FROM Announcement ");
 
-if (isset($_POST['filterChallenge'])) {
+if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
   $query = "SELECT * " .
            "FROM Challenge NATURAL JOIN has_category ";
 
