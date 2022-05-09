@@ -45,6 +45,11 @@ a:hover {
   color: red;
 }
 
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* LOGIN AND REGISTER PAGES */
 .main-box {
   margin: 0 auto;
@@ -133,9 +138,9 @@ a:hover {
 
 /* END OF ABOUT */
 
-/* USER HOME PAGE */
+/* HOME PAGE */
 .nav-links {
-  margin-right: 16px;
+  margin-right: 32px;
 }
 
 .mail {
@@ -159,7 +164,7 @@ a:hover {
 .user-home-left-box-upper {
   width: 100%;
   padding: 12px;
-  border: gray solid 1px;
+  border: gray solid 2px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -174,12 +179,18 @@ a:hover {
   justify-content: space-between;
 }
 
+.user-home-left-box-upper-content::-webkit-scrollbar {
+  display: none;
+}
+
 .user-home-left-box-upper-content {
   margin-top: 16px;
   width: 95%;
+  max-height: 162px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: scroll;
 }
 
 .user-home-left-box-upper-challenge {
@@ -187,13 +198,16 @@ a:hover {
   width: 100%;
   text-decoration: none;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-home-left-box-bottom {
   margin-top: 32px;
   padding: 12px;
   width: 100%;
-  border: gray solid 1px;
+  border: gray solid 2px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -208,11 +222,17 @@ a:hover {
   justify-content: center;
 }
 
+.user-home-left-box-bottom-content::-webkit-scrollbar {
+  display: none;
+}
+
 .user-home-left-box-bottom-content {
   margin-top: 16px;
   width: 95%;
+  max-height: 108px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .user-home-left-box-bottom-contest {
@@ -220,6 +240,9 @@ a:hover {
   width: 100%;
   text-decoration: none;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-home-left-box-bottom-footer {
@@ -233,7 +256,7 @@ a:hover {
 .user-home-right-box {
   width: 30%;
   padding: 12px;
-  border: gray 1px solid;
+  border: gray 2px solid;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -249,12 +272,18 @@ a:hover {
   align-items: left;
 }
 
+.user-home-right-box-content::-webkit-scrollbar {
+  display: none;
+}
+
 .user-home-right-box-content {
   margin-top: 16px;
   width: 90%;
+  max-height: 351px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: scroll;
 }
 
 .user-home-right-box-announcement {
@@ -279,6 +308,9 @@ a:hover {
   text-decoration: none;
   color: green;
   font-size: large;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-home-right-box-footer {
@@ -324,3 +356,359 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+.editor-home-left-box-upper-header {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+.editor-home-left-box-upper-header-button-group {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.editor-home-right-box-header {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.editor-home-right-box-verify {
+  margin-top: 16px;
+  padding: 12px;
+  width: 100%;
+  border: gray solid 1px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+.editor-home-right-box-verify-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}*/
+
+.editor-home-right-box-verify-detail-top {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.editor-home-right-box-verify-detail-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* END OF HOME PAGE */
+/* CHALLENGE */
+.challenge-body {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.challenge-header {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.challenge-body-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.challenge-left {
+  width: 100%;
+  min-width: 25%;
+  max-width: 60%;
+  border: gray 1px solid;
+  border-radius: 8px;
+  height: 250px;
+  resize: horizontal;
+  overflow: scroll;
+}
+
+.challenge-right {
+  width: 100%;
+  min-width: 40%;
+  max-width: 75%;
+  border: gray 1px solid;
+  border-radius: 8px;
+  height: 250px;
+  resize: horizontal;
+  overflow: scroll;
+}
+
+/* END CHALLENGE */
+
+/* USER OLD SUBMISSIONS */
+.user-old-submission {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-old-submission-header {
+  width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-old-submission-header-top {
+  margin-bottom: 16px;
+}
+
+.user-old-submission-content::-webkit-scrollbar {
+  display: none;
+}
+
+.user-old-submission-content {
+  width: 100%;
+  max-height: 520px;
+  border: gray 2px solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: scroll;
+  padding-top: 16px;
+}
+
+.user-old-submission-content-links {
+  width: 90%;
+  text-align: left;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* END OF USER OLD SUBMISSIONS */
+
+/* USER ALL ANNOUNCEMENTS */
+.user-all-announcements-content::-webkit-scrollbar {
+  display: none;
+}
+
+.user-all-announcements-content {
+  width: 100%;
+  max-height: 520px;
+  border: gray 2px solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: scroll;
+  padding-top: 16px;
+}
+
+.user-all-announcements-content-top {
+  width: 90%;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+}
+
+.user-all-announcements-content-bottom::-webkit-scrollbar {
+  display: none;
+}
+
+.user-all-announcements-content-bottom {
+  max-height: 512px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.user-all-announcements-content-bottom-links-box {
+  width: 100%;
+
+}
+
+.user-all-announcements-content-bottom-links {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-all-announcements-content-bottom-links-save {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  border: none;
+}
+
+.user-all-announcements-content-footer {
+  width: 90%;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: self-end;
+}
+
+/* END OF USER ALL ANNOUNCEMENTS */
+
+/* USER ANNOUNCEMENT DETAIL */
+.user-announcement-detail {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.user-announcement-detail-left-box {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 72px;
+}
+
+.user-announcement-detail-left-box-button {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.user-announcement-detail-right-box {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-announcement-detail-right-box-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user-announcement-detail-right-box-header-save {
+  border: none;
+}
+
+.user-announcement-detail-right-box-content {
+  width: 100%;
+  margin-top: 32px;
+  border: gray 2px solid;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+/* END OF USER ANNOUNCEMENT DETAIL */
+
+/* MY ANNOUNCEMENTS */
+.company-all-announcements-content::-webkit-scrollbar {
+  display: none;
+}
+
+.company-all-announcements-content {
+  max-height: 512px;
+  width: 90%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.company-all-announcements-content-bottom-links {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* END OF MY ANNOUNCEMENTS */
+
+/* NEW ANNOUNCEMENT */
+.new-announcement-content {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-announcement-content-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.new-announcement-content-body {
+  width: 100%;
+  min-height: 256px;
+  max-height: 512px;
+}
+
+.new-announcement-content-title {
+  min-height: 62px;
+  margin-bottom: 32px;
+}
+
+.new-announcement-content-detail {
+  height: 420px;
+}
+
+.new-announcement-content-footer {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+/* END OF NEW ANNOUNCEMENT*/
