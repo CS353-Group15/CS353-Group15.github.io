@@ -23,10 +23,20 @@ $rs_announcements = $mysqli->query("" .
                     "FROM Announcement ");
 
 if (isset($_POST['filterChallenge'])) {
-  $rs_challenges = $mysqli->query("" .
-                       "SELECT * " .
-                       "FROM Challenge " .
-                       "WHERE item_id = '1' ");
+  $query = "SELECT * " .
+           "FROM Challenge NATURAL JOIN has_category ";
+
+  $categories = $_POST['categories'];
+  if (count($categories) > 0) {
+    $query = $query . "WHERE ";
+  }
+  foreach ($categories as $i => $c) {
+    $query = $query . "category_name = '$c' ";
+    if ($i < count($categories) - 1)
+      $query = $query . "OR ";
+  }
+
+  $rs_challenges = $mysqli->query($query);
 }
 ?>
 <!DOCTYPE html>
@@ -105,7 +115,7 @@ if (isset($_POST['filterChallenge'])) {
                   });
                 });
                 </script>
-                <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width:100%;" id="filterChallengeSelect"></select>
+                <select class="js-example-basic-multiple" name="categories[]" multiple="multiple" style="width:100%;" id="filterChallengeSelect"></select>
                 <div style="display:flex; flex-direction: row-reverse; justify-content: end;">
                   <button class="btn btn-primary btn-large" type="submit" name="filterChallenge" style="margin:10px">Filter Challenges</button>
                 </div>
