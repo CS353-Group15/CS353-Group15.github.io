@@ -50,7 +50,7 @@
 
   <div class="challenge-body">
     <div class="challenge-header">
-      <a href="#" class="btn btn-danger">View Solutions</a>
+      <a href="#" class="btn btn-danger">Remaining Time: ...</a>
       <div class="challenge-top">
         ID-NAME OF THE CHALLENGE
       </div>
@@ -67,7 +67,10 @@
       </div>
     </div>
     <div class="user-all-announcements-content-footer">
-      <a href="#" class="btn btn-primary">Submit</a>
+        <a href="#" class="btn btn-primary">Previous</a>
+    </div>
+    <div class="user-all-announcements-content-footer">
+        <a href="#" class="btn btn-primary">Next/Submit</a>
     </div>
   </div>
 
