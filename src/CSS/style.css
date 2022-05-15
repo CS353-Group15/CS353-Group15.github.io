@@ -712,3 +712,39 @@ a:hover {
 }
 
 /* END OF NEW ANNOUNCEMENT*/
+
+
+/* USER ALL CONTESTS */
+
+.user-all-contests {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-all-contests-header {
+  width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-all-contests-header-top {
+  margin-bottom: 16px;
+}
+
+.user-all-contests-content-footer {
+  width: 90%;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: self-end;
+}
+
+/* END OF USER ALL CONTESTS */
