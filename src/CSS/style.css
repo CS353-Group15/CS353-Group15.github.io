@@ -748,3 +748,31 @@ a:hover {
 }
 
 /* END OF USER ALL CONTESTS */
+
+/* USER CONTEST DETAIL */
+.user-contest-detail-rightest-box {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-contest-detail-rightest-box-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user-contest-detail-rightest-box-header-save {
+  border: none;
+}
+
+.user-contest-detail-rightest-box-content {
+  width: 100%;
+  margin-top: 32px;
+  border: gray 2px solid;
+  border-radius: 8px;
+  padding: 32px;
+}
+/* END OF USER CONTEST DETAIL */
