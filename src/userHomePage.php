@@ -153,7 +153,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
             $item_id = $row['item_id'];
             $difficulty = $row['difficulty'];
 
-            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Challenge $item_id, Difficulty: $difficulty </a></div>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"challenge.php?item_id=$item_id\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Challenge $item_id, Difficulty: $difficulty </a></div>";
           endwhile;
           ?>
         </div>

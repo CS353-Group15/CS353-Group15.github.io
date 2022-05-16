@@ -1,4 +1,17 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: userLogin.php");
+}
+
+$item_id = $_GET['item_id'];
+$rs_challenge = $mysqli->query("" .
+                               "SELECT problem_statement " .
+                               "FROM Challenge " .
+                               "WHERE item_id = '$item_id'");
+$row = mysqli_fetch_array($rs_challenge);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,14 +65,14 @@
     <div class="challenge-header">
       <a href="#" class="btn btn-danger">View Solutions</a>
       <div class="challenge-top">
-        ID-NAME OF THE CHALLENGE
+        <?php echo "Item $item_id" ?>
       </div>
       <a href="#" class="btn btn-success">View Previous Submissions</a>
     </div>
     <div class="challenge-body-content">
       <div class="challenge-left">
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum eius mollitia consequatur, tempore aliquam corporis aspernatur eveniet, libero accusantium deleniti vero facilis optio. Accusantium doloribus totam suscipit eveniet nulla quos.
+          <?php echo $row['problem_statement'] ?>
         </p>
       </div>
       <div class="challenge-right">
