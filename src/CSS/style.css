@@ -853,3 +853,45 @@ a:hover {
 
 /* END OF USER ALL INVITES */
 
+/* NEW INVITE */
+.new-invite-content {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-invite-content-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.new-invite-content-body {
+  width: 100%;
+  display: flex;
+}
+
+.new-invite-content-title {
+  min-height: 62px;
+}
+
+.new-invite-content-detail {
+  height: 420px;
+}
+
+.new-invite-content-footer {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+/* END OF NEW INVITE*/
