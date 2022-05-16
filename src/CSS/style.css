@@ -713,7 +713,6 @@ a:hover {
 
 /* END OF NEW ANNOUNCEMENT*/
 
-
 /* USER ALL CONTESTS */
 
 .user-all-contests {
@@ -732,18 +731,6 @@ a:hover {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-
-.user-all-contests-header-top {
-  margin-bottom: 16px;
-}
-
-.user-all-contests-content-footer {
-  width: 90%;
-  margin-bottom: 32px;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
   align-items: self-end;
 }
 
@@ -776,3 +763,80 @@ a:hover {
   padding: 32px;
 }
 /* END OF USER CONTEST DETAIL */
+
+/* USER ALL INVITES */
+.user-all-invites-content::-webkit-scrollbar {
+  display: none;
+}
+
+.user-all-invites-content {
+  width: 100%;
+  max-height: 520px;
+  border: gray 2px solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: scroll;
+  padding-top: 16px;
+}
+
+.user-all-invites-content-top {
+  width: 90%;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+}
+
+.user-all-invites-content-bottom::-webkit-scrollbar {
+  display: none;
+}
+
+.user-all-invites-content-bottom {
+  max-height: 512px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.user-all-invites-content-bottom-links-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.user-all-invites-content-bottom-links {
+  width: 60%;
+  text-align: left;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 2px;
+}
+
+.user-all-invites-content-bottom-links-res {
+  width: 30%;
+  text-align: left;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 2px;
+}
+
+.user-all-invites-content-footer {
+  width: 90%;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: self-end;
+}
+
+/* END OF USER ALL INVITES */
