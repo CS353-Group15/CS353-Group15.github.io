@@ -75,7 +75,7 @@ $rs_announcements = $mysqli->query("" .
       <div class="user-home-left-box-upper">
         <div class="user-home-left-box-upper-header">
           <h3 title="Scroll down to see more">Interviews</h3>
-          <button class="btn btn-danger">Send new interview invite</button>
+          <a href="companyNewInvite.php" class="btn btn-danger">Send new interview invite</a>
         </div>
         <div class="user-home-left-box-upper-content">
           <?php /*
@@ -108,7 +108,7 @@ $rs_announcements = $mysqli->query("" .
           <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
         </div>
         <div class="user-home-left-box-bottom-footer">
-          <a href="#" class="btn btn-primary user-home-left-box-bottom-button">View Sponsored Contests</a>
+          <a href="companySponsoredContests.php" class="btn btn-primary user-home-left-box-bottom-button">View Sponsored Contests</a>
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@ $rs_announcements = $mysqli->query("" .
         <!-- UNTIL HERE -->
       </div>
       <div class="user-home-right-box-footer">
-        <a href="" class="btn btn-primary">Post New Announcements</a>
+        <a href="createNewAnnouncement.php" class="btn btn-primary">Post New Announcements</a>
       </div>
     </div>
   </div>

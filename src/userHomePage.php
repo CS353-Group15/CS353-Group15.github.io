@@ -167,7 +167,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
             $item_id = $row['item_id'];
             $name = $row['name'];
 
-            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"userContestDetail.php?item_id=$item_id\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
           endwhile;
           ?>
         </div>
@@ -198,7 +198,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
             </div>
             <div class=\"user-home-right-box-announcement-detail\">
               <h5>Company Name</h5>
-              <a href=\"#\" class=\"user-home-right-box-announcement-detail-link\"><strong>$title</strong></a>
+              <a href=\"userAnnouncementDetail.php?item_id=$item_id\" class=\"user-home-right-box-announcement-detail-link\"><strong>$title</strong></a>
             </div>
           </div>";
         endwhile;
