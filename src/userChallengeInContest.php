@@ -59,18 +59,25 @@
     <div class="challenge-body-content">
       <div class="challenge-left">
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum eius mollitia consequatur, tempore aliquam corporis aspernatur eveniet, libero accusantium deleniti vero facilis optio. Accusantium doloribus totam suscipit eveniet nulla quos.
+          <strong>Problem Specification:</strong> php code
+
+
         </p>
       </div>
       <div class="challenge-right">
-        <textarea name="challenge-code" id="challenge-code"></textarea>
+        <select class="form-select language-selector" aria-label="Select Language">
+          <option selected>Open this select menu</option>
+          <option value="Java">Java</option>
+          <option value="JS">JS</option>
+          <option value="C">C</option>
+        </select>
+        <textarea name="challenge-code" id="challenge-code" class="challenge-code" placeholder="// Code Here"></textarea>
       </div>
+
     </div>
-    <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">Previous</a>
-    </div>
-    <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">Next/Submit</a>
+    <div class="user-challenge-in-contest-footer">
+      <a href="#" class="btn btn-primary" style="margin-right: 16px">Previous</a>
+      <a href="#" class="btn btn-primary">Next/Submit</a>
     </div>
   </div>
 
