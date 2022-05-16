@@ -8,10 +8,21 @@ if (isset($_POST['logout'])) {
 
 $item_id = $_GET['item_id'];
 $rs_challenge = $mysqli->query("" .
-  "SELECT problem_statement " .
+  "SELECT problem_statement, difficulty " .
   "FROM Challenge " .
   "WHERE item_id = '$item_id'");
 $row = mysqli_fetch_array($rs_challenge);
+$problem_statement = $row['problem_statement'];
+$difficulty = $row['difficulty'];
+
+$rs_category =
+  $mysqli->query("" .
+    "SELECT category_name " .
+    "FROM Category " .
+    "WHERE category_name IN ( " .
+    "SELECT category_name " .
+    "FROM has_category " .
+    "WHERE challenge_id = $item_id)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,17 +83,23 @@ $row = mysqli_fetch_array($rs_challenge);
     <div class="challenge-body-content">
       <div class="challenge-left">
         <p>
-          <strong>Diffuculty:</strong> GOD OF WAR
+          <strong>Diffuculty:</strong><?php echo $difficulty; ?>
           <br>
           <strong>Language:</strong> EXAMPLE 1, EXAMPLE 2, EXAMPLE 3
           <br>
-          <strong>Category:</strong> EXAMPLE 1, EXAMPLE 2, EXAMPLE 3
+          <strong>Category:</strong>
+          <?php
+          while ($category_row = mysqli_fetch_array($rs_category)) :
+            echo $category_row['category_name'] . " ";
+          endwhile;
+          ?>
         </p>
         <hr class="opacity-100">
         <p>
-          <strong>Problem Specification:</strong> php code
-
-
+          <strong>Problem Specification:</strong>
+          <?php
+          echo $problem_statement;
+          ?>
         </p>
       </div>
       <div class="challenge-right">
