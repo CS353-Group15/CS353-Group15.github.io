@@ -731,6 +731,18 @@ a:hover {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.user-all-contests-header-top {
+  margin-bottom: 16px;
+}
+
+.user-all-contests-content-footer {
+  width: 90%;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
   align-items: self-end;
 }
 
@@ -841,7 +853,7 @@ a:hover {
 
 /* END OF USER ALL INVITES */
 
-/* NEW ANNOUNCEMENT */
+/* NEW INVITE */
 .new-invite-content {
   margin: 0 auto;
   width: 80%;

@@ -50,57 +50,59 @@ public class Project {
             System.out.println("Dropped user table (if it had already existed).");
 
             s = conn.createStatement();
-            s.executeUpdate(usersTable);
-            System.out.println("Created user table.");
-
-            s = conn.createStatement();
             s.executeUpdate("DROP TABLE IF EXISTS Company");
             System.out.println("Dropped company table (if it had already existed).");
-
-            s = conn.createStatement();
-            s.executeUpdate(companyTable);
-            System.out.println("Created company table.");
-
-            s = conn.createStatement();
-            s.executeUpdate("DROP TABLE IF EXISTS Challenge");
-            System.out.println("Dropped company table (if it had already existed).");
-
-            s = conn.createStatement();
-            s.executeUpdate(challengeTable);
-            System.out.println("Created challenge table.");
 
             s = conn.createStatement();
             s.executeUpdate("DROP TABLE IF EXISTS Contest");
             System.out.println("Dropped contest table (if it had already existed).");
 
             s = conn.createStatement();
-            s.executeUpdate(contestTable);
-            System.out.println("Created contest table.");
-
-            s = conn.createStatement();
             s.executeUpdate("DROP TABLE IF EXISTS Announcement");
             System.out.println("Dropped announcement table (if it had already existed).");
-
-            s = conn.createStatement();
-            s.executeUpdate(announcementTable);
-            System.out.println("Created announcement table.");
-
-            s = conn.createStatement();
-            s.executeUpdate("DROP TABLE IF EXISTS Category");
-            System.out.println("Dropped Category table (if it had already existed).");
-
-            s = conn.createStatement();
-            s.executeUpdate(categoryTable);
-            System.out.println("Created announcement table.");
 
             s = conn.createStatement();
             s.executeUpdate("DROP TABLE IF EXISTS has_category");
             System.out.println("Dropped has_category table (if it had already existed).");
 
             s = conn.createStatement();
-            s.executeUpdate(has_categoryTable);
+            s.executeUpdate("DROP TABLE IF EXISTS Category");
+            System.out.println("Dropped Category table (if it had already existed).");
+
+            s = conn.createStatement();
+            s.executeUpdate("DROP TABLE IF EXISTS Challenge");
+            System.out.println("Dropped company table (if it had already existed).");
+
+            // --------------------------------
+            s = conn.createStatement();
+            s.executeUpdate(usersTable);
+            System.out.println("Created user table.");
+
+            s = conn.createStatement();
+            s.executeUpdate(companyTable);
+            System.out.println("Created company table.");
+
+            s = conn.createStatement();
+            s.executeUpdate(challengeTable);
+            System.out.println("Created challenge table.");
+
+            s = conn.createStatement();
+            s.executeUpdate(contestTable);
+            System.out.println("Created contest table.");
+
+            s = conn.createStatement();
+            s.executeUpdate(announcementTable);
             System.out.println("Created announcement table.");
 
+            s = conn.createStatement();
+            s.executeUpdate(categoryTable);
+            System.out.println("Created category table.");
+
+            s = conn.createStatement();
+            s.executeUpdate(has_categoryTable);
+            System.out.println("Created has_category table.");
+
+            // ----------------------------------------
 
             s = conn.createStatement();
             s.executeUpdate("" +
@@ -115,7 +117,7 @@ public class Project {
             s = conn.createStatement();
             s.executeUpdate("" +
                     "INSERT INTO Challenge(item_id, difficulty, problem_statement) VALUES " +
-                    "('1', 2, '')");
+                    "('1', 2, 'deneme')");
 
             s = conn.createStatement();
             s.executeUpdate("" +
