@@ -1,4 +1,23 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: userLogin.php");
+}
+
+$item_id = $_GET['item_id'];
+
+$rs_contest = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Contest " .
+  "WHERE item_id = $item_id");
+
+$row = mysqli_fetch_array($rs_contest);
+$name = $row['name'];
+$desc = $row['description'];
+$date = $row['date'];
+$duration = $row['duration'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +53,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <div class="navbar-brand">BilkentCodes</div>
+      <a href="userHomePage.php" class="navbar-brand">BilkentCodes</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -70,7 +89,7 @@
     </div>
     <div class="user-announcement-detail-right-box">
       <div class="user-announcement-detail-right-box-header">
-        <h3>ID - NAME OF THE CONTEST</h3>
+        <h3><?php echo $item_id . " - " . $name; ?></h3>
         <a href="#" role="button" class="btn btn-outline-danger user-announcement-detail-right-box-header-save">
           <?php
           $enrolled = 1;
@@ -90,14 +109,21 @@
       </div>
       <div class="user-announcement-detail-right-box-content">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nulla consequuntur reprehenderit culpa a soluta dolorem saepe incidunt dicta reiciendis omnis maxime, deserunt obcaecati qui maiores amet? Voluptatum deleniti optio sed ut dolore, voluptas illo odit iste quasi voluptatem, porro laborum aut veritatis earum ullam nobis accusantium natus asperiores dolorem ducimus quas mollitia! Ad sed ullam, obcaecati fuga adipisci aliquid id nam pariatur, molestias, voluptate saepe natus? Itaque ipsa aliquid a nam omnis illum sed aspernatur minima laudantium quisquam repellat cum perferendis, non, natus hic earum voluptas quod tempora! Autem, cum aliquid? Ab ducimus quibusdam vero facilis cum atque dolores dolorem et iure quia odit debitis, animi sint. Obcaecati, debitis, voluptatibus officiis architecto hic facilis nesciunt perspiciatis dolore esse quod ea maxime. Nobis dolor in cumque similique dolorum possimus nemo omnis error vel veritatis, tenetur explicabo neque doloremque a autem ut. Ad, quis facilis illum ea aut in alias aliquid, enim consequuntur assumenda quo dolorum, consectetur libero reprehenderit error at quidem eos hic saepe delectus. Dolor tempore, quasi atque, vero rem recusandae mollitia ab assumenda esse similique illo eveniet et modi aperiam doloribus nesciunt, expedita quam. Adipisci in neque blanditiis cum hic quia nihil architecto molestias minus corrupti ratione, laudantium facilis perferendis magnam nemo assumenda maiores esse inventore ducimus, a fugit repudiandae eos modi ea. Quod facilis repellendus ipsa, quibusdam a dolores quas cumque nisi. Explicabo praesentium voluptates natus laborum corporis officia non nostrum commodi, at veritatis? Expedita aliquam quas labore vitae consequuntur, facere sapiente porro? Quasi libero voluptatum aut nostrum id incidunt officia reprehenderit magnam aperiam. Laboriosam voluptate rerum harum, incidunt amet illo aspernatur officia! Placeat numquam maiores eaque accusamus. Sequi eius, maiores aspernatur illo odio praesentium molestias minima quasi rerum reprehenderit sint sed, aliquid culpa, esse animi. Enim veniam dolore, qui error quibusdam facilis dignissimos doloremque iste eligendi vel officiis nemo expedita fugit itaque alias optio hic asperiores autem. Explicabo, magni beatae? Quaerat ducimus molestias nostrum suscipit doloribus explicabo deserunt velit officia expedita laborum unde a amet similique at sunt ratione necessitatibus, maxime placeat molestiae magni, reiciendis reprehenderit commodi. Eligendi ut et adipisci, asperiores ex atque maxime reprehenderit exercitationem quisquam nulla obcaecati labore modi autem. Quo, tempore perspiciatis et doloremque magnam cupiditate illo quidem quia, laboriosam possimus voluptatibus dolores nulla est doloribus fuga nihil, debitis vitae facere vero quasi. Eius, porro nobis. Iste repellendus odio pariatur! Culpa error corporis ratione eius modi atque qui, exercitationem, nam aliquid blanditiis, numquam nihil iusto pariatur veniam ad sequi. Eveniet suscipit optio ipsa facere, consectetur quam dolorum voluptates hic numquam sapiente dolor dicta a! Similique dolores ut itaque iste, neque magnam autem velit optio sapiente ipsam ipsum quisquam natus impedit nobis quod asperiores. Facere corrupti eos, omnis amet incidunt nostrum magni fuga deserunt possimus soluta tenetur vero architecto vel necessitatibus accusamus voluptate autem esse dignissimos nemo, molestias voluptatibus excepturi tempora modi voluptatum. Aliquam quod, beatae aspernatur numquam quam nobis facere commodi assumenda reprehenderit cum deleniti ducimus nesciunt. Doloribus recusandae voluptatum quos eius minus quod, magnam aperiam eveniet expedita molestias id mollitia nisi.
+          <strong>Date: </strong><?php echo $date; ?>
+          <br>
+          <strong>Duration: </strong><?php echo $duration; ?>
+          <br>
+          <?php echo $desc; ?>
         </p>
       </div>
     </div>
-    <div class="user-announcement-detail-rightest-box">
+    <div class="user-announcement-detail-left-box">
       <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Go to the challenges</a>
       <a href="#" role="button" class="btn btn-success user-announcement-detail-left-box-button">Go to the leaderboard</a>
     </div>
+  </div>
+  <div class="user-announcement-detail-footer">
+    <a href="#" class="btn btn-primary">Enroll</a>
   </div>
 </body>
 
