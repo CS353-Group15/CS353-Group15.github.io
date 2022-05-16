@@ -29,40 +29,37 @@
 
         <?php
         include("config.php");
-        function login($mysqli) {
+        function login($mysqli)
+        {
           $company_id = $_POST['company_id'];
           $password = $_POST['password'];
 
           if ($company_id == "" && $password == "") {
             echo '<script> alert("Please enter your id and password") </script>';
             return;
-          }
-          else if ($company_id == "") {
-              echo '<script> alert("Please enter your id") </script>';
-              return;
-          }
-          else if ($password == "") {
+          } else if ($company_id == "") {
+            echo '<script> alert("Please enter your id") </script>';
+            return;
+          } else if ($password == "") {
             echo '<script> alert("Please enter your password") </script>';
             return;
           }
 
           $rs = $mysqli->query("" .
-                               "SELECT * " .
-                               "FROM Company " .
-                               "WHERE company_id = '$company_id' AND password = '$password' ");
+            "SELECT * " .
+            "FROM Company " .
+            "WHERE company_id = '$company_id' AND password = '$password' ");
 
           // login is successful
           if ($rs) {
             if ($rs->num_rows > 0) {
               $_SESSION['company_id'] = $company_id;
               // TODO
-              // header("location: companyHomePage.php");
-            }
-            else {
+              header("location: companyHomePage.php");
+            } else {
               echo '<script> alert("Wrong input!") </script>';
             }
-          }
-          else {
+          } else {
             // Error with the query
             header("location: companyLogin.php");
           }

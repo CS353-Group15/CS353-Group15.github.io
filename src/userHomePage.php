@@ -61,7 +61,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <div class="navbar-brand">BilkentCodes</div>
+      <a href="userHomePage.php" class="navbar-brand">BilkentCodes</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -80,7 +80,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
           </li>
           <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
-              <div class="button-box">
+              <div>
                 <button class="btn btn-primary btn-large" type="submit" name="logout">Log Out</button>
               </div>
             </form>
@@ -172,7 +172,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
           ?>
         </div>
         <div class="user-home-left-box-bottom-footer">
-          <a href="#" class="btn btn-primary user-home-left-box-bottom-button">View Enrolled Contests</a>
+          <a href="userEnrolledContests.php" class="btn btn-primary user-home-left-box-bottom-button">View Enrolled Contests</a>
         </div>
       </div>
     </div>
@@ -182,7 +182,10 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
       </div>
       <div class="user-home-right-box-content">
         <?php
+        $counter = 0;
         while ($row = mysqli_fetch_array($rs_announcements)) :
+          $item_id = $row['announcement_id'];
+          $title = $row['title'];
           echo
           "<div class=\"user-home-right-box-announcement\">
             <div class=\"user-home-right-box-announcement-save\">
@@ -195,14 +198,14 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
             </div>
             <div class=\"user-home-right-box-announcement-detail\">
               <h5>Company Name</h5>
-              <a href=\"#\" class=\"user-home-right-box-announcement-detail-link\"><strong>Announcement Title</strong></a>
+              <a href=\"#\" class=\"user-home-right-box-announcement-detail-link\"><strong>$title</strong></a>
             </div>
           </div>";
         endwhile;
         ?>
       </div>
       <div class="user-home-right-box-footer">
-        <a href="" class="btn btn-primary">View Saved Announcements</a>
+        <a href="userSavedAnnouncements.php" class="btn btn-primary">View Saved Announcements</a>
       </div>
     </div>
   </div>
