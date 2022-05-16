@@ -86,17 +86,12 @@ $row = mysqli_fetch_array($rs_challenge);
         </p>
       </div>
       <div class="challenge-right">
-        <select class="form-select language-selector" aria-label="Select Language">
-          <option selected>Open this select menu</option>
-          <option value="Java">Java</option>
-          <option value="JS">JS</option>
-          <option value="C">C</option>
-        </select>
-        <textarea name="challenge-code" id="challenge-code" class="challenge-code" placeholder="// Code Here"></textarea>
+        <textarea name="challenge-code" id="challenge-code" class="non-challenge-code" placeholder="Write Your Answer Here"></textarea>
       </div>
 
     </div>
     <div class="challenge-footer">
+      <a href="#" class="btn btn-success view-others-submission">View Other's Submissions</a>
       <a href="#" class="btn btn-info">Submit</a>
     </div>
   </div>
