@@ -63,11 +63,12 @@ $row = mysqli_fetch_array($rs_challenge);
 
   <div class="challenge-body">
     <div class="challenge-header">
-      <a href="#" class="btn btn-danger">View Solutions</a>
+      <a href="#" class="btn btn-danger view-solution">View Solutions</a>
       <div class="challenge-top">
-        ID-NAME OF THE CHALLENGE
+        ID-NAME OF THE CHALLENGE <br>
+        DATE OF SUBMISSION: 30.02.2022
       </div>
-      <a href="#" class="btn btn-success">View Previous Submissions</a>
+      <a href="#" class="btn btn-success invisible">View Previous Submissions</a>
     </div>
     <div class="challenge-body-content">
       <div class="challenge-left">

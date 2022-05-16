@@ -1,4 +1,4 @@
-<?php
+<?php /*
 include("session.php");
 
 if (isset($_POST['logout'])) {
@@ -6,12 +6,21 @@ if (isset($_POST['logout'])) {
   header("location: userLogin.php");
 }
 
-$item_id = $_GET['item_id'];
-$rs_challenge = $mysqli->query("" .
-  "SELECT problem_statement " .
-  "FROM Challenge " .
-  "WHERE item_id = '$item_id'");
-$row = mysqli_fetch_array($rs_challenge);
+include("config.php");
+$username = $_SESSION['username'];
+$rs_challenges = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Challenge ");
+
+$today_date = date("Y-m-d");
+$rs_contests = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Contest " .
+  "WHERE date >= '$today_date'");
+
+$rs_announcements = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Announcement "); */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +58,7 @@ $row = mysqli_fetch_array($rs_challenge);
           <li class="nav-item nav-links">
             <a class="nav-link" href="userProfile.php">Your Profile</a>
           </li>
-          <li class="nav-item nav-links">
+          <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
               <div>
                 <button class="btn btn-primary btn-large" type="submit" name="logout">Log Out</button>
@@ -61,46 +70,45 @@ $row = mysqli_fetch_array($rs_challenge);
     </div>
   </nav>
 
-  <div class="challenge-body">
-    <div class="challenge-header">
-      <a href="#" class="btn btn-danger">View Solutions</a>
-      <div class="challenge-top">
-        ID-NAME OF THE CHALLENGE
-      </div>
-      <a href="#" class="btn btn-success">View Previous Submissions</a>
+
+  <div class="editor-new-coding-challenge">
+    <div class="editor-new-coding-challenge-header">
+      <a href="#" class="btn btn-success">View Solutions</a>
+      <input type="text" class="form-control challenge-name" placeholder="Name">
+      <select class="form-select difficulty-selector" aria-label="Difficulty">
+        <option selected>Difficulty</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
     </div>
-    <div class="challenge-body-content">
-      <div class="challenge-left">
-        <p>
-          <strong>Diffuculty:</strong> GOD OF WAR
-          <br>
-          <strong>Language:</strong> EXAMPLE 1, EXAMPLE 2, EXAMPLE 3
-          <br>
-          <strong>Category:</strong> EXAMPLE 1, EXAMPLE 2, EXAMPLE 3
-        </p>
-        <hr class="opacity-100">
-        <p>
-          <strong>Problem Specification:</strong> php code
 
+    <div class="editor-new-coding-challenge-content">
+      <div class="editor-new-coding-challenge-content-left">
+        <div class="editor-new-coding-challenge-content-left-top">
+          <textarea name="new-coding-challenge-description" id="new-coding-challenge-description" placeholder="Problem Specification..." class="form-control new-coding-challenge-description"></textarea>
+        </div>
+        <div class="editor-new-coding-challenge-category">
+          <div class="editor-new-coding-challenge-add-category">
 
-        </p>
+          </div>
+        </div>
+        <div class="editor-new-coding-challenge-language">
+          <div class="editor-new-coding-challenge-add-category">
+
+          </div>
+        </div>
       </div>
-      <div class="challenge-right">
-        <select class="form-select language-selector" aria-label="Select Language">
-          <option selected>Open this select menu</option>
-          <option value="Java">Java</option>
-          <option value="JS">JS</option>
-          <option value="C">C</option>
-        </select>
-        <textarea name="challenge-code" id="challenge-code" class="challenge-code" placeholder="// Code Here"></textarea>
+      <div class="editor-new-coding-challenge-content-right">
+        <div class="editor-new-coding-challenge-content-right-top">
+          <textarea name="new-coding-challenge-solution" id="new-coding-challenge-solution" placeholder="Solution..." class="form-control new-non-coding-challenge-solution"></textarea>
+        </div>
       </div>
-
-    </div>
-    <div class="challenge-footer">
-      <a href="#" class="btn btn-info">Submit</a>
     </div>
   </div>
-
+  <div class="editor-new-coding-challenge-submit">
+    <a href="#" class="btn btn-primary">Submit</a>
+  </div>
 
 </body>
 

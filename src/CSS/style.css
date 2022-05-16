@@ -323,24 +323,34 @@ a:hover {
 }
 
 .modal-background {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
+  /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  /* Could be more or less, depending on screen size */
 }
 
 .modal-close {
@@ -419,7 +429,8 @@ a:hover {
 /* END OF HOME PAGE */
 /* CHALLENGE */
 .challenge-body {
-  width: 100%;
+  width: 95%;
+  height: 85vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -428,41 +439,95 @@ a:hover {
 }
 
 .challenge-header {
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 16px;
 }
 
+.view-solution {
+  height: 42px;
+}
+
 .challenge-body-content {
   width: 100%;
+  height: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
 
+.challenge-left::-webkit-scrollbar {
+  display: none;
 }
 
 .challenge-left {
-  width: 100%;
-  min-width: 25%;
-  max-width: 60%;
+  width: 30%;
+  height: 100%;
   border: gray 1px solid;
   border-radius: 8px;
-  height: 250px;
-  resize: horizontal;
+  padding: 8px;
+  resize: none;
   overflow: scroll;
 }
 
+.horizontal-line {
+  color: black;
+}
+
+.challenge-right::-webkit-scrollbar {
+  display: none;
+}
+
 .challenge-right {
-  width: 100%;
-  min-width: 40%;
-  max-width: 75%;
-  border: gray 1px solid;
-  border-radius: 8px;
-  height: 250px;
-  resize: horizontal;
+  width: 65%;
+  height: 100%;
+  resize: none;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.language-selector {
+  height: 48px;
+}
+
+.challenge-code::-webkit-scrollbar {
+  display: none;
+}
+
+.challenge-code {
+  width: 100%;
+  height: 92%;
+  border-radius: 8px;
+  resize: none;
+  overflow: scroll;
+}
+
+.non-challenge-code::-webkit-scrollbar {
+  display: none;
+}
+
+.non-challenge-code {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  resize: none;
+  overflow: scroll;
+}
+
+.challenge-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.view-others-submission {
+  margin-right: 32px;
 }
 
 /* END CHALLENGE */
@@ -774,6 +839,7 @@ a:hover {
   border-radius: 8px;
   padding: 32px;
 }
+
 /* END OF USER CONTEST DETAIL */
 
 /* USER ALL INVITES */
@@ -895,3 +961,166 @@ a:hover {
 }
 
 /* END OF NEW INVITE*/
+
+/* EDITOR NEW CODING CHALLENGE */
+
+.editor-new-coding-challenge {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 32px;
+}
+
+.editor-new-coding-challenge-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.difficulty-selector {
+  margin-left: 16px;
+  width: 25%;
+}
+
+.challenge-name {
+  margin-left: 16px;
+  width: 25%;
+}
+
+.editor-new-coding-challenge-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-new-coding-challenge-content-left {
+  width: 49%;
+  height: 100%;
+
+}
+
+
+.new-coding-challenge-description::-webkit-scrollbar {
+  display: none;
+}
+
+.new-coding-challenge-description {
+  height: 512px;
+  resize: none;
+  overflow: scroll;
+}
+
+.editor-new-coding-challenge-content-right {
+  width: 49%;
+  height: 100%;
+}
+
+.new-coding-challenge-solution::-webkit-scrollbar {
+  display: none;
+}
+
+.new-coding-challenge-solution {
+  resize: none;
+  overflow: scroll;
+}
+
+.editor-new-coding-challenge-content-right-test-cases {
+  width: 100%;
+  margin-top: 16px;
+  border: gray 1px solid;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-header {
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-info-box::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-info-box {
+  width: 100%;
+  max-height: 256px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-info {
+  width: 95%;
+  height: 92px;
+  border: gray 1px solid;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-bottom-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-bottom-input::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-bottom-input {
+  width: 49%;
+  resize: none;
+  overflow: scroll;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-bottom-output::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-new-coding-challenge-content-right-test-cases-bottom-output {
+  width: 49%;
+  resize: none;
+  overflow: scroll;
+}
+
+.editor-new-coding-challenge-submit {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.new-non-coding-challenge-solution::-webkit-scrollbar {
+  display: none;
+}
+
+.new-non-coding-challenge-solution {
+  resize: none;
+  overflow: scroll;
+  height: 512px;
+}
+
+/* END OF EDITOR NEW CODING CHALLENGE */
