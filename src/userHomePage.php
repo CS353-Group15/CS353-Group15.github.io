@@ -19,21 +19,40 @@ $rs_contests = $mysqli->query("" .
   "WHERE date >= '$today_date'");
 
 $rs_announcements = $mysqli->query("" .
-  "SELECT * " .
-  "FROM Announcement ");
+                    "SELECT * " .
+                    "FROM Announcement ");
 
-if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
+if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_POST['languages']))) {
   $query = "SELECT * " .
-    "FROM Challenge NATURAL JOIN has_category ";
+           "FROM Challenge NATURAL JOIN has_category NATURAL JOIN has_language ";
 
-  $categories = $_POST['categories'];
-  if (count($categories) > 0) {
-    $query = $query . "WHERE ";
+  if (isset($_POST['categories'])) {
+    $categories = $_POST['categories'];
+    if (count($categories) > 0) {
+      $query = $query . "WHERE ";
+    }
+    foreach ($categories as $i => $c) {
+      $query = $query . "category_name = '$c' ";
+      if ($i < count($categories) - 1)
+        $query = $query . "OR ";
+    }
   }
-  foreach ($categories as $i => $c) {
-    $query = $query . "category_name = '$c' ";
-    if ($i < count($categories) - 1)
-      $query = $query . "OR ";
+
+  if (isset($_POST['languages'])) {
+    $languages = $_POST['languages'];
+    if (count($languages) > 0 && !(isset($_POST['categories']) && count($categories) > 0)) {
+      $query = $query . "WHERE ";
+    }
+    else if (count($languages) > 0 && (isset($_POST['categories']) && count($categories) > 0)) {
+      $query = $query . "AND ( ";
+    }
+    foreach ($languages as $i => $c) {
+      $query = $query . "language_name = '$c' ";
+      if ($i < count($languages) - 1)
+        $query = $query . "OR ";
+      else if ((isset($_POST['categories']) && count($categories) > 0))
+        $query = $query . ") ";
+    }
   }
 
   $rs_challenges = $mysqli->query($query);
@@ -50,7 +69,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" rel="stylesheet"/>
   <link rel="stylesheet" href="CSS/style.css">
 
   <script>
@@ -61,7 +80,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a href="userHomePage.php" class="navbar-brand">BilkentCodes</a>
+      <div class="navbar-brand">BilkentCodes</div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -80,7 +99,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
           </li>
           <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
-              <div>
+              <div class="button-box">
                 <button class="btn btn-primary btn-large" type="submit" name="logout">Log Out</button>
               </div>
             </form>
@@ -101,21 +120,36 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
               <div class="modal-content">
                 <span class="modal-close">&times;</span>
                 <script type="text/javascript">
-                  $(document).ready(function() {
-                    var s2 = $("#filterChallengeSelect").select2({
+                $(document).ready(function() {
+                  var s2 = $("#filterChallengeSelectCategories").select2({
                       placeholder: "Categories",
                       tags: true
-                    });
-
-                    var vals = ["Trees", "Hashing", "Strings"];
-
-                    vals.forEach(function(e) {
-                      if (!s2.find('option:contains(' + e + ')').length)
-                        s2.append($('<option>').text(e));
-                    });
                   });
+
+                  var valsCategories = ["Trees", "Hashing", "Strings"];
+
+                  valsCategories.forEach(function(e){
+                  if(!s2.find('option:contains(' + e + ')').length)
+                    s2.append($('<option>').text(e));
+                  });
+                });
+
+                $(document).ready(function() {
+                  var s2 = $("#filterChallengeSelectLanguages").select2({
+                      placeholder: "Languages",
+                      tags: true
+                  });
+
+                  var valsLanguages = ["Java", "Python", "C++"];
+
+                  valsLanguages.forEach(function(e){
+                  if(!s2.find('option:contains(' + e + ')').length)
+                    s2.append($('<option>').text(e));
+                  });
+                });
                 </script>
-                <select class="js-example-basic-multiple" name="categories[]" multiple="multiple" style="width:100%;" id="filterChallengeSelect"></select>
+                <select class="js-example-basic-multiple" name="categories[]" multiple="multiple" style="width:100%;" id="filterChallengeSelectCategories"></select>
+                <select class="js-example-basic-multiple" name="languages[]" multiple="multiple" style="width:100%;" id="filterChallengeSelectLanguages"></select>
                 <div style="display:flex; flex-direction: row-reverse; justify-content: end;">
                   <button class="btn btn-primary btn-large" type="submit" name="filterChallenge" style="margin:10px">Filter Challenges</button>
                 </div>
@@ -124,23 +158,24 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
           </form>
 
           <script type="text/javascript">
-            var modal_background = document.getElementById("challengeFilterBackground");
-            var btn = document.getElementById("userHomeFilterChallengeBtn");
-            var close_span = document.getElementsByClassName("modal-close")[0];
+          var modal_background = document.getElementById("challengeFilterBackground");
+          var btn = document.getElementById("userHomeFilterChallengeBtn");
+          var close_span = document.getElementsByClassName("modal-close")[0];
 
-            btn.onclick = function() {
-              modal_background.style.display = "block";
-            }
+          btn.onclick = function() {
+            modal_background.style.display = "block";
+          }
 
-            close_span.onclick = function() {
+          close_span.onclick = function() {
+            modal_background.style.display = "none";
+          }
+
+          modal_background.onclick = function(event) {
+            if (event.target == modal_background) {
               modal_background.style.display = "none";
             }
+          }
 
-            modal_background.onclick = function(event) {
-              if (event.target == modal_background) {
-                modal_background.style.display = "none";
-              }
-            }
           </script>
 
           <h3>Challenges</h3>
@@ -167,12 +202,12 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
             $item_id = $row['item_id'];
             $name = $row['name'];
 
-            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"userContestDetail.php?item_id=$item_id\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
           endwhile;
           ?>
         </div>
         <div class="user-home-left-box-bottom-footer">
-          <a href="userEnrolledContests.php" class="btn btn-primary user-home-left-box-bottom-button">View Enrolled Contests</a>
+          <a href="#" class="btn btn-primary user-home-left-box-bottom-button">View Enrolled Contests</a>
         </div>
       </div>
     </div>
@@ -182,10 +217,7 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
       </div>
       <div class="user-home-right-box-content">
         <?php
-        $counter = 0;
         while ($row = mysqli_fetch_array($rs_announcements)) :
-          $item_id = $row['announcement_id'];
-          $title = $row['title'];
           echo
           "<div class=\"user-home-right-box-announcement\">
             <div class=\"user-home-right-box-announcement-save\">
@@ -198,14 +230,14 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
             </div>
             <div class=\"user-home-right-box-announcement-detail\">
               <h5>Company Name</h5>
-              <a href=\"userAnnouncementDetail.php?item_id=$item_id\" class=\"user-home-right-box-announcement-detail-link\"><strong>$title</strong></a>
+              <a href=\"#\" class=\"user-home-right-box-announcement-detail-link\"><strong>Announcement Title</strong></a>
             </div>
           </div>";
         endwhile;
         ?>
       </div>
       <div class="user-home-right-box-footer">
-        <a href="userSavedAnnouncements.php" class="btn btn-primary">View Saved Announcements</a>
+        <a href="" class="btn btn-primary">View Saved Announcements</a>
       </div>
     </div>
   </div>
