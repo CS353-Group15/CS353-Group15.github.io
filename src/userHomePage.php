@@ -9,20 +9,20 @@ if (isset($_POST['logout'])) {
 include("config.php");
 $username = $_SESSION['username'];
 $rs_challenges = $mysqli->query("" .
-                     "SELECT * " .
-                     "FROM Challenge ");
+  "SELECT * " .
+  "FROM Challenge ");
 
 $today_date = date("Y-m-d");
 $rs_contests = $mysqli->query("" .
-                    "SELECT * " .
-                    "FROM Contest " .
-                    "WHERE date >= '$today_date'");
+  "SELECT * " .
+  "FROM Contest " .
+  "WHERE date >= '$today_date'");
 
 $rs_announcements = $mysqli->query("" .
                     "SELECT * " .
                     "FROM Announcement ");
 
-if (isset($_POST['filterChallenge'])) {
+if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
   $query = "SELECT * " .
            "FROM Challenge NATURAL JOIN has_category ";
 
@@ -149,11 +149,11 @@ if (isset($_POST['filterChallenge'])) {
         </div>
         <div class="user-home-left-box-upper-content">
           <?php
-          while ($row = mysqli_fetch_array($rs_challenges)):
+          while ($row = mysqli_fetch_array($rs_challenges)) :
             $item_id = $row['item_id'];
             $difficulty = $row['difficulty'];
 
-            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Challenge $item_id, Difficulty: $difficulty </a>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"challenge.php?item_id=$item_id\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Challenge $item_id, Difficulty: $difficulty </a></div>";
           endwhile;
           ?>
         </div>
@@ -164,11 +164,11 @@ if (isset($_POST['filterChallenge'])) {
         </div>
         <div class="user-home-left-box-bottom-content">
           <?php
-          while ($row = mysqli_fetch_array($rs_contests)):
+          while ($row = mysqli_fetch_array($rs_contests)) :
             $item_id = $row['item_id'];
             $name = $row['name'];
 
-            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a>";
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
           endwhile;
           ?>
         </div>
@@ -183,13 +183,14 @@ if (isset($_POST['filterChallenge'])) {
       </div>
       <div class="user-home-right-box-content">
         <?php
-        while ($row = mysqli_fetch_array($rs_announcements)):
+        while ($row = mysqli_fetch_array($rs_announcements)) :
           echo
           "<div class=\"user-home-right-box-announcement\">
             <div class=\"user-home-right-box-announcement-save\">
               <a href=\"#\" class=\"user-home-right-box-announcement-save-button\">
-                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" fill=\"currentColor\" class=\"bi bi-archive\" viewBox=\"0 0 16 16\">
-                  <path d=\"M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z\" />
+                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-bookmarks\" viewBox=\"0 0 16 16\">
+                  <path d=\"M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z\" />
+                  <path d=\"M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z\" />
                 </svg>
               </a>
             </div>
