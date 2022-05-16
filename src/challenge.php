@@ -22,7 +22,7 @@ $rs_category =
     "WHERE category_name IN ( " .
     "SELECT category_name " .
     "FROM has_category " .
-    "WHERE challenge_id = $item_id)");
+    "WHERE item_id = $item_id)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
