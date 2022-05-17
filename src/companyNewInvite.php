@@ -1,4 +1,4 @@
-<?php /*
+<?php
 include("session.php");
 
 if (isset($_POST['logout'])) {
@@ -8,19 +8,6 @@ if (isset($_POST['logout'])) {
 
 include("config.php");
 $username = $_SESSION['username'];
-$rs_challenges = $mysqli->query("" .
-  "SELECT * " .
-  "FROM Challenge ");
-
-$today_date = date("Y-m-d");
-$rs_contests = $mysqli->query("" .
-  "SELECT * " .
-  "FROM Contest " .
-  "WHERE date >= '$today_date'");
-
-$rs_announcements = $mysqli->query("" .
-  "SELECT * " .
-  "FROM Announcement "); */
 ?>
 <!DOCTYPE html>
 <html lang="en">
