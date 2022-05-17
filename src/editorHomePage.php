@@ -47,13 +47,10 @@ $rs_not_verified_companies = $mysqli->query("" .
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a href="editorHomePage.php" class="navbar-brand">BilkentCodes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item nav-links">
-            <a class="nav-link" href="userProfile.php">Your Profile</a>
+            <a class="nav-link" href="editorProfile.php">Your Profile</a>
           </li>
           <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
