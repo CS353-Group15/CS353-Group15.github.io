@@ -67,9 +67,9 @@
         <div class="user-announcement-detail-left-box">
         </div>
         <div class="user-announcement-detail-right-box" style="align-items:center">
-            <a href="#" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sponsored contests</a>
-            <a href="#" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View your announcements</a>
-            <a href="#" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sent interview invites</a>
+            <a href="companySponsoredContests.php" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sponsored contests</a>
+            <a href="companyMyAnnouncements.php" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View your announcements</a>
+            <a href="companyAllInvites.php" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sent interview invites</a>
         </div>
     </div>
 </body>

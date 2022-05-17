@@ -56,7 +56,7 @@ $rs_announcements = $mysqli->query("" .
             </a>
           </li>
           <li class="nav-item nav-links">
-            <a class="nav-link" href="userProfile.php">Your Profile</a>
+            <a href="companyProfile.php" class="nav-link" href="userProfile.php">Your Profile</a>
           </li>
           <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
