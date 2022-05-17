@@ -1,10 +1,4 @@
-<?php
-session_start();
-if (isset($_SESSION['username'])) {
-  header("location: userHomePage.php");
-}
-// TODO: company
-?>
+<?php ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +9,6 @@ if (isset($_SESSION['username'])) {
   <title>BilkentCodes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/style.css">
-
 </head>
 
 <body>
@@ -31,21 +24,20 @@ if (isset($_SESSION['username'])) {
     <div class="main-box">
       <div class="left-box">
         <div class="left-box-header">
-          <h2>Welcome back! If you are a user, login here.</h2>
+          <h2>Welcome back! If you are an editor, login here.</h2>
         </div>
 
         <?php
         include("config.php");
         function login($mysqli)
         {
-          $username = $_POST['username'];
+          $editor_id = $_POST['editor_id'];
           $password = $_POST['password'];
-
-          if ($username == "" && $password == "") {
-            echo '<script> alert("Please enter your username and password") </script>';
+          if ($editor_id == "" && $password == "") {
+            echo '<script> alert("Please enter your id and password") </script>';
             return;
-          } else if ($username == "") {
-            echo '<script> alert("Please enter your username") </script>';
+          } else if ($editor_id == "") {
+            echo '<script> alert("Please enter your id") </script>';
             return;
           } else if ($password == "") {
             echo '<script> alert("Please enter your password") </script>';
@@ -54,20 +46,21 @@ if (isset($_SESSION['username'])) {
 
           $rs = $mysqli->query("" .
             "SELECT * " .
-            "FROM User " .
-            "WHERE username = '$username' AND password = '$password' ");
+            "FROM Editor " .
+            "WHERE editor_id = '$editor_id' AND password = '$password' ");
 
           // login is successful
           if ($rs) {
             if ($rs->num_rows > 0) {
-              $_SESSION['username'] = $username;
-              header("location: userHomePage.php");
+              $_SESSION['editor_id'] = $editor_id;
+              // TODO
+              header("location: editorHomePage.php");
             } else {
               echo '<script> alert("Wrong input!") </script>';
             }
           } else {
             // Error with the query
-            header("location: userLogin.php");
+            header("location: editorLogin.php");
           }
         }
 
@@ -76,22 +69,19 @@ if (isset($_SESSION['username'])) {
         }
         ?>
 
-        <form action="userLogin.php" method="POST" id="login">
+        <form action="editorLogin.php" method="POST" id="login">
           <div class="forms">
-            <input type="text" class="data-box" placeholder="Username" name="username">
+            <input type="text" class="data-box" placeholder="Id" name="editor_id">
             <input type="password" class="data-box" placeholder="Password" name="password">
             <div class="button-box">
               <button class="btn btn-primary btn-large login" type="submit" name="login">Login</button>
             </div>
           </div>
         </form>
-        <div class="left-footer">
-          <p>If you do not have an account yet, you can create one by <strong><a href="userRegister.php">registering</a></strong>.</p>
-        </div>
       </div>
       <div class="right-box">
-        <a href="companyLogin.php" class="btn btn-primary btn-large change-company">Login As A Company</a>
-        <a href="editorLogin.php" class="btn btn-primary btn-large change-company" style="margin-top: 16px">Login As An Editor</a>
+        <a href="userLogin.php" class="btn btn-primary btn-large change-company">Login As A User</a>
+        <a href="companyLogin.php" class="btn btn-primary btn-large change-company" style="margin-top: 16px">Login As A Company</a>
       </div>
     </div>
   </div>
