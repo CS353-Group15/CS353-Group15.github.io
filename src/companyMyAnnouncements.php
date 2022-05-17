@@ -1,4 +1,13 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: userLogin.php");
+}
+
+include("config.php");
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
