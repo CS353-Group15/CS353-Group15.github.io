@@ -6,6 +6,16 @@ if (isset($_POST['logout'])) {
   header("location: userLogin.php");
 }
 
+if (isset($_POST['submit'])) {
+  $mm = mysqli_fetch_array($mysqli->query("SELECT max(submission_id) as m FROM Submission "));
+  $s_id = $mm['m'] + 1;
+  $code = $_POST['challenge-code'];
+  $today_date = date("Y-m-d");
+  $score = rand(1,10);
+  $mysqli->query("INSERT INTO Submission(submission_id, content, date, score, programming_lang) VALUES " .
+                             "('$s_id', '$code', '$today_date', $score, 'java')");
+}
+
 $item_id = $_GET['item_id'];
 $rs_challenge = $mysqli->query("" .
   "SELECT problem_statement, difficulty " .
@@ -81,59 +91,61 @@ $rs_language =
     </div>
   </nav>
 
-  <div class="challenge-body">
-    <div class="challenge-header">
-      <a href="#" class="btn btn-danger">View Solutions</a>
-      <div class="challenge-top">
-        <?php echo $item_id . " - " . "NAME OF CHALLENGE"; ?>
+  <form action="challenge.php?item_id=<?php echo $item_id ?>" method="POST">
+    <div class="challenge-body">
+      <div class="challenge-header">
+        <a href="#" class="btn btn-danger">View Solutions</a>
+        <div class="challenge-top">
+          <?php echo $item_id . " - " . "NAME OF CHALLENGE"; ?>
+        </div>
+        <a href="#" class="btn btn-success">View Previous Submissions</a>
       </div>
-      <a href="#" class="btn btn-success">View Previous Submissions</a>
-    </div>
-    <div class="challenge-body-content">
-      <div class="challenge-left">
-        <p>
-          <strong>Diffuculty:</strong><?php echo $difficulty; ?>
-          <br>
-          <strong>Language:</strong>
-          <?php
-          while ($language_row = mysqli_fetch_array($rs_language)) :
-            echo $language_row['language_name'] . " ";
-          endwhile;
-          ?>
-          <br>
-          <strong>Category:</strong>
-          <?php
-          while ($category_row = mysqli_fetch_array($rs_category)) :
-            echo $category_row['category_name'] . " ";
-          endwhile;
-          ?>
-        </p>
-        <hr class="opacity-100">
-        <p>
-          <strong>Problem Specification:</strong>
-          <?php
-          echo $problem_statement;
-          ?>
-        </p>
-      </div>
-      <div class="challenge-right">
-        <select class="form-select language-selector" aria-label="Select Language">
-          <option selected>Choose Language</option>
-          <?php
-          mysqli_data_seek($rs_language, 0);
-          while ($language_row = mysqli_fetch_array($rs_language)) :
-            echo "<option>" . $language_row['language_name'] . "</option>";
-          endwhile;
-          ?>
-        </select>
-        <textarea name="challenge-code" id="challenge-code" class="challenge-code" placeholder="// Code Here"></textarea>
-      </div>
+      <div class="challenge-body-content">
+        <div class="challenge-left">
+          <p>
+            <strong>Diffuculty:</strong><?php echo $difficulty; ?>
+            <br>
+            <strong>Language:</strong>
+            <?php
+            while ($language_row = mysqli_fetch_array($rs_language)) :
+              echo $language_row['language_name'] . " ";
+            endwhile;
+            ?>
+            <br>
+            <strong>Category:</strong>
+            <?php
+            while ($category_row = mysqli_fetch_array($rs_category)) :
+              echo $category_row['category_name'] . " ";
+            endwhile;
+            ?>
+          </p>
+          <hr class="opacity-100">
+          <p>
+            <strong>Problem Specification:</strong>
+            <?php
+            echo $problem_statement;
+            ?>
+          </p>
+        </div>
+        <div class="challenge-right">
+          <select class="form-select language-selector" aria-label="Select Language">
+            <option selected>Choose Language</option>
+            <?php
+            mysqli_data_seek($rs_language, 0);
+            while ($language_row = mysqli_fetch_array($rs_language)) :
+              echo "<option>" . $language_row['language_name'] . "</option>";
+            endwhile;
+            ?>
+          </select>
+          <textarea name="challenge-code" id="challenge-code" class="challenge-code" placeholder="// Code Here"></textarea>
+        </div>
 
+      </div>
+      <div class="challenge-footer">
+        <button name="submit" href="#" class="btn btn-info">Submit</button>
+      </div>
     </div>
-    <div class="challenge-footer">
-      <a href="#" class="btn btn-info">Submit</a>
-    </div>
-  </div>
+  </form>
 
 
 </body>
