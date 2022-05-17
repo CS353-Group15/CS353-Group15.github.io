@@ -122,9 +122,6 @@ $duration = $row['duration'];
       <a href="#" role="button" class="btn btn-success user-announcement-detail-left-box-button">Go to the leaderboard</a>
     </div>
   </div>
-  <div class="user-announcement-detail-footer">
-    <a href="#" class="btn btn-primary">Enroll</a>
-  </div>
 </body>
 
 </html>

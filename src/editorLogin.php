@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+session_start();
+if (isset($_SESSION['editor_id'])) {
+  header("location: editorHomePage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

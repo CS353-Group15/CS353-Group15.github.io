@@ -1,4 +1,20 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: editorLogin.php");
+}
+
+include("config.php");
+$username = $_SESSION['editor_id'];
+
+$rs_verified = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Company " .
+  "WHERE company_id IN ( " .
+  "SELECT company_id " .
+  "FROM verify)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,61 +81,24 @@
   <div class="user-old-submission">
     <div class="user-old-submission-header">
       <h1 class="user-old-submission-header-top" title="Scroll down to see more">
-        Companies
+        Verified Companies
       </h1>
     </div>
     <div class="user-all-announcements-content">
       <div class="user-all-announcements-content-bottom">
-        <!-- EXAMPLE -->
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
-        </div>
-        <!-- END OF EXAMPLE -->
-
+        <?php
+        while ($row = mysqli_fetch_array($rs_verified)) :
+          $company_name = $row['name'];
+          $company_id = $row['company_id'];
+          echo "<div class=\"new-verify-company-footer\">" .
+            "<a href=\"#\" class=\"btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links\" style=\"height: 42px;\">$company_id - $company_name</a>" .
+            "<a href=\"#\" class=\"btn btn-primary\" style=\"height: 42px;\">Cancel</a>" .
+            "</div>";
+        endwhile;
+        ?>
       </div>
       <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">View unverified companies</a>
+        <a href="editorUnverifiedCompanies.php" class="btn btn-primary">View unverified companies</a>
       </div>
     </div>
   </div>
