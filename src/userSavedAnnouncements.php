@@ -192,7 +192,7 @@
 
       </div>
       <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">View all announcements</a>
+        <a href="userAllAnnouncements.php" class="btn btn-primary">View all announcements</a>
       </div>
     </div>
   </div>

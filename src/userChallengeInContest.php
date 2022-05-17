@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
 
 
   <?php
-  if ($max_number > $next_question) {
+  if ($max_number >= $next_question) {
     echo "<form action=\"userChallengeInContest.php?contest_id=$contest_id&question_number=$next_question\" method=\"POST\">";
   } else {
     echo "<form action=\"userHomePage.php\" method=\"POST\">";
@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
     <div class="challenge-header">
       <a href="#" class="btn btn-danger">Remaining Time: ...</a>
       <div class="challenge-top">
-        <?php echo $challenge_id . " - Question Number 1"; ?>
+        <?php echo $challenge_id . " - Question Number " . $question_number; ?>
       </div>
       <a href="#" class="btn btn-success">View Previous Submissions</a>
     </div>
@@ -173,7 +173,7 @@ if (isset($_POST['submit'])) {
       if ($previous_question == 0) {
         echo "<a href=\"userChallengeInContest.php?contest_id=$contest_id&question_number=$previous_question\" class=\"btn btn-primary invisible\">Previous</a>";
       } else {
-        echo "<a href=\"userChallengeInContest.php?contest_id=$contest_id&question_number=$previous_question\" class=\"btn btn-primary\">Next</a>";
+        echo "<a href=\"userChallengeInContest.php?contest_id=$contest_id&question_number=$previous_question\" class=\"btn btn-primary\">Previous</a>";
       }
       ?>
       <button type="submit" class="btn btn-primary">Next/Submit</button>
