@@ -73,53 +73,53 @@
         <!-- EXAMPLE -->
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <div class="new-verify-company-footer">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
+          <a href="#" class="btn btn-primary" style="height: 42px;">Cancel</a>
         </div>
         <!-- END OF EXAMPLE -->
 
       </div>
       <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">View verified companies</a>
+        <a href="#" class="btn btn-primary">View unverified companies</a>
       </div>
     </div>
   </div>
