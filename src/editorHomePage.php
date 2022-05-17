@@ -18,6 +18,13 @@ $rs_contests = $mysqli->query("" .
   "FROM Contest " .
   "WHERE date >= '$today_date'");
 
+if (isset($_POST['verify'])) {
+  $company_id = $_POST['company_id'];
+  $editor_id = $_SESSION['editor_id'];
+  $query = "INSERT INTO verify(editor_id, company_id) VALUES ('$editor_id', '$company_id')";
+  $mysqli->query($query);
+}
+
 $rs_not_verified_companies = $mysqli->query("" .
   "SELECT company_id, name " .
   "FROM Company " .
@@ -35,12 +42,6 @@ $rs_not_verified_companies = $mysqli->query("" .
   <title>BilkentCodes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/style.css">
-
-  <script>
-    function verify(company_id) {
-      console.log(company_id);
-    }
-  </script>
 </head>
 
 <body>
@@ -117,11 +118,15 @@ $rs_not_verified_companies = $mysqli->query("" .
         while ($row = mysqli_fetch_array($rs_not_verified_companies)) :
           $name = $row['name'];
           $company_id = $row['company_id'];
-          echo
-          "<div class=\"editor-home-right-box-verify\">
+          echo "
+           <div class=\"editor-home-right-box-verify\">
             <h5 class=\"editor-home-right-box-verify-detail-top\">$name</h5>
-            <button class=\"btn btn-primary\" onclick=\"verify(" . json_encode($company_id) . ")\">Verify</button>
-          </div>";
+            <form action=\"editorHomePage.php\" method=\"POST\">
+             <input type=\"hidden\" name=\"company_id\" value=\"$company_id\">
+             <button class=\"btn btn-primary\" type=\"submit\" name=\"verify\">Verify</button>
+            </form>
+           </div>
+           ";
         endwhile;
         ?>
       </div>
