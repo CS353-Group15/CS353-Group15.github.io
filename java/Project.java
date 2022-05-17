@@ -102,8 +102,25 @@ public class Project {
                                 + "Pellentesque lorem purus, sollicitudin eu suscipit nec, mollis non lorem. Cras sit amet turpis purus. Integer vulputate condimentum fringilla. In vulputate dictum ligula vitae luctus. "
                                 + "Nulla convallis nec leo id fermentum. Cras sodales nunc non vestibulum tincidunt. Aenean ut magna mauris. Suspendisse mattis ipsum sit amet molestie bibendum. Nullam maximus neque vitae leo pharetra varius. Nunc pretium orci id velit.";
 
+                String userView = "CREATE VIEW user_view AS (SELECT username, name, email FROM User);";
+
+                String companyView = "CREATE VIEW company_view AS (SELECT company_id, name, website FROM Company);";
+
+                String editorView = "CREATE VIEW editor_view AS (SELECT editor_id FROM Editor);";
+
                 try {
                         s = conn.createStatement();
+                        s.executeUpdate("DROP VIEW IF EXISTS user_view;");
+                        System.out.println("Dropped user_view");
+
+                        s = conn.createStatement();
+                        s.executeUpdate("DROP VIEW IF EXISTS company_view;");
+                        System.out.println("Dropped company_view");
+
+                        s = conn.createStatement();
+                        s.executeUpdate("DROP VIEW IF EXISTS editor_view;");
+                        System.out.println("Dropped editor_view");
+
                         s.executeUpdate("DROP TABLE IF EXISTS Item");
                         System.out.println("Dropped Item table");
 
@@ -343,6 +360,17 @@ public class Project {
                         s.executeUpdate(isInvitedTable);
                         System.out.println("Created isInvitedTable table.");
 
+                        s = conn.createStatement();
+                        s.executeUpdate(userView);
+                        System.out.println("Created userView table.");
+
+                        s = conn.createStatement();
+                        s.executeUpdate(companyView);
+                        System.out.println("Created companyView table.");
+
+                        s = conn.createStatement();
+                        s.executeUpdate(editorView);
+                        System.out.println("Created editorView table.");
                         // ----------------------------------------
 
                         s = conn.createStatement();
