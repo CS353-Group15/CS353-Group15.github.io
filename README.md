@@ -1,3 +1,6 @@
+### Final Report
+[Download Final Report](/cs353-final-report-group15.pdf)
+
 ### Design Report
 [Download Design Report](/Group15_design_report.pdf)
 
