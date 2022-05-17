@@ -230,7 +230,7 @@
 
       </div>
       <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">View saved announcements</a>
+        <a href="userSavedAnnouncements.php" class="btn btn-primary">View saved announcements</a>
       </div>
     </div>
   </div>
