@@ -31,7 +31,7 @@ $rs_languages = $mysqli->query("" .
   "FROM ProgrammingLanguage ");
 
 if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_POST['languages']))) {
-  $query = "SELECT * " .
+  $query = "SELECT DISTINCT item_id, difficulty " .
     "FROM Challenge, has_category NATURAL JOIN has_language WHERE item_id = challenge_id ";
 
   if (isset($_POST['categories'])) {
@@ -52,16 +52,14 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_
 
   if (isset($_POST['languages'])) {
     $languages = $_POST['languages'];
-    if (count($languages) > 0 && !(isset($_POST['categories']) && count($categories) > 0)) {
-      $query = $query . "WHERE ";
-    } else if (count($languages) > 0 && (isset($_POST['categories']) && count($categories) > 0)) {
-      $query = $query . "AND ( ";
+    if (count($languages) > 0) {
+      $query = $query . "and ( ";
     }
     foreach ($languages as $i => $c) {
       $query = $query . "language_name = '$c' ";
       if ($i < count($languages) - 1)
         $query = $query . "OR ";
-      else if ((isset($_POST['categories']) && count($categories) > 0))
+      else
         $query = $query . ") ";
     }
   }
