@@ -1,4 +1,13 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("location: userLogin.php");
+}
+
+include("config.php");
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +28,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <div class="navbar-brand">BilkentCodes</div>
+            <a href="companyHomePage.php" class="navbar-brand">BilkentCodes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -49,7 +58,7 @@
     </nav>
     <div class="user-announcement-detail">
         <div class="user-announcement-detail-left-box">
-            <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to homepage</a>
+            <a href="companyHomePage.php" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to homepage</a>
         </div>
         <div class="user-announcement-detail-right-box">
             <div class="user-announcement-detail-right-box-header">
@@ -67,9 +76,9 @@
         <div class="user-announcement-detail-left-box">
         </div>
         <div class="user-announcement-detail-right-box" style="align-items:center">
-            <a href="#" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sponsored contests</a>
-            <a href="#" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View your announcements</a>
-            <a href="#" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sent interview invites</a>
+            <a href="companySponsoredContests.php" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sponsored contests</a>
+            <a href="companyMyAnnouncements.php" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View your announcements</a>
+            <a href="companyAllInvites.php" class="btn btn-primary" style="width:50%; margin-bottom: 8px">View sent interview invites</a>
         </div>
     </div>
 </body>

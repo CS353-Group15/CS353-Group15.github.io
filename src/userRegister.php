@@ -74,6 +74,19 @@ if (isset($_SESSION['username'])) {
             else {
               $mysqli->query("INSERT INTO User(username, name, email, password) VALUES " .
                              "('$username', '$name', '$email', '$password')");
+              $mysqli->query(
+                "DELETE FROM User " .
+                "WHERE email NOT LIKE '_%@_%'"
+              );
+
+              $rs = $mysqli->query("" .
+                "SELECT * " .
+                "FROM User " .
+                "WHERE username = '$username' ");
+              if ($rs->num_rows == 0) {
+                echo '<script> alert("The email is invalid") </script>';
+                return;
+              }
               $_SESSION['username'] = $username;
               header("location: userHomePage.php");
             }

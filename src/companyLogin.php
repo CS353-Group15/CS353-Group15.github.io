@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+session_start();
+if (isset($_SESSION['company_id'])) {
+  header("location: companyHomePage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,9 +89,8 @@
         </div>
       </div>
       <div class="right-box">
-        <form action="userLogin.php">
-          <button class="btn btn-primary btn-large change-company">Login As A User</button>
-        </form>
+        <a href="userLogin.php" class="btn btn-primary btn-large change-company">Login As A User</a>
+        <a href="editorLogin.php" class="btn btn-primary btn-large change-company" style="margin-top: 16px">Login As An Editor</a>
       </div>
     </div>
   </div>

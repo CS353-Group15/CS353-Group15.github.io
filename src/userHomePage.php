@@ -22,18 +22,46 @@ $rs_announcements = $mysqli->query("" .
   "SELECT * " .
   "FROM Announcement ");
 
-if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
-  $query = "SELECT * " .
-    "FROM Challenge NATURAL JOIN has_category ";
+$rs_categories = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Category ");
 
-  $categories = $_POST['categories'];
-  if (count($categories) > 0) {
-    $query = $query . "WHERE ";
+$rs_languages = $mysqli->query("" .
+  "SELECT * " .
+  "FROM ProgrammingLanguage ");
+
+if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_POST['languages']))) {
+  $query = "SELECT DISTINCT item_id, difficulty " .
+    "FROM Challenge, has_category NATURAL JOIN has_language WHERE item_id = challenge_id ";
+
+  if (isset($_POST['categories'])) {
+    $categories = $_POST['categories'];
+    if (count($categories) > 0) {
+      $query = $query . "AND ";
+    }
+    foreach ($categories as $i => $c) {
+      if ($i == 0)
+        $query = $query . "( ";
+      $query = $query . "category_name = '$c' ";
+      if ($i < count($categories) - 1)
+        $query = $query . "OR ";
+      else
+        $query = $query . ") ";
+    }
   }
-  foreach ($categories as $i => $c) {
-    $query = $query . "category_name = '$c' ";
-    if ($i < count($categories) - 1)
-      $query = $query . "OR ";
+
+  if (isset($_POST['languages'])) {
+    $languages = $_POST['languages'];
+    if (count($languages) > 0) {
+      $query = $query . "and ( ";
+    }
+    foreach ($languages as $i => $c) {
+      $query = $query . "language_name = '$c' ";
+      if ($i < count($languages) - 1)
+        $query = $query . "OR ";
+      else
+        $query = $query . ") ";
+    }
   }
 
   $rs_challenges = $mysqli->query($query);
@@ -61,14 +89,14 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a href="userHomePage.php" class="navbar-brand">BilkentCodes</a>
+      <div class="navbar-brand">BilkentCodes</div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item nav-links">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="userAllInvites.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="yellow" class="bi bi-mailbox" viewBox="0 0 16 16">
                 <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z" />
                 <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z" />
@@ -102,20 +130,53 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
                 <span class="modal-close">&times;</span>
                 <script type="text/javascript">
                   $(document).ready(function() {
-                    var s2 = $("#filterChallengeSelect").select2({
+                    var s2 = $("#filterChallengeSelectCategories").select2({
                       placeholder: "Categories",
                       tags: true
                     });
 
-                    var vals = ["Trees", "Hashing", "Strings"];
+                    var valsCategories = [<?php
+                                          $string = "";
+                                          while ($row = mysqli_fetch_array($rs_categories)) :
+                                            $category_name = $row['category_name'];
 
-                    vals.forEach(function(e) {
+                                            $string = $string . "\"$category_name\",";
+                                          endwhile;
+                                          $string = rtrim($string, ',');
+                                          echo $string;
+                                          ?>];
+
+                    valsCategories.forEach(function(e) {
+                      if (!s2.find('option:contains(' + e + ')').length)
+                        s2.append($('<option>').text(e));
+                    });
+                  });
+
+                  $(document).ready(function() {
+                    var s2 = $("#filterChallengeSelectLanguages").select2({
+                      placeholder: "Languages",
+                      tags: true
+                    });
+
+                    var valsLanguages = [<?php
+                                          $string = "";
+                                          while ($row = mysqli_fetch_array($rs_languages)) :
+                                            $language_name = $row['language_name'];
+
+                                            $string = $string . "\"$language_name\",";
+                                          endwhile;
+                                          $string = rtrim($string, ',');
+                                          echo $string;
+                                          ?>];
+
+                    valsLanguages.forEach(function(e) {
                       if (!s2.find('option:contains(' + e + ')').length)
                         s2.append($('<option>').text(e));
                     });
                   });
                 </script>
-                <select class="js-example-basic-multiple" name="categories[]" multiple="multiple" style="width:100%;" id="filterChallengeSelect"></select>
+                <select class="js-example-basic-multiple" name="categories[]" multiple="multiple" style="width:100%;" id="filterChallengeSelectCategories"></select>
+                <select class="js-example-basic-multiple" name="languages[]" multiple="multiple" style="width:100%;" id="filterChallengeSelectLanguages"></select>
                 <div style="display:flex; flex-direction: row-reverse; justify-content: end;">
                   <button class="btn btn-primary btn-large" type="submit" name="filterChallenge" style="margin:10px">Filter Challenges</button>
                 </div>
@@ -151,7 +212,6 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
           while ($row = mysqli_fetch_array($rs_challenges)) :
             $item_id = $row['item_id'];
             $difficulty = $row['difficulty'];
-
             echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"challenge.php?item_id=$item_id\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Challenge $item_id, Difficulty: $difficulty </a></div>";
           endwhile;
           ?>
@@ -182,10 +242,20 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
       </div>
       <div class="user-home-right-box-content">
         <?php
-        $counter = 0;
         while ($row = mysqli_fetch_array($rs_announcements)) :
-          $item_id = $row['announcement_id'];
+          $announcement_id = $row['announcement_id'];
           $title = $row['title'];
+          $rs_company = $mysqli->query("" .
+            "SELECT * " .
+            "FROM Company " .
+            "WHERE company_id IN (" .
+            "SELECT company_id " .
+            "FROM announce " .
+            "WHERE announcement_id = $announcement_id )");
+
+          $row_company = mysqli_fetch_array($rs_company);
+          $company_name = $row_company['name'];
+
           echo
           "<div class=\"user-home-right-box-announcement\">
             <div class=\"user-home-right-box-announcement-save\">
@@ -197,8 +267,8 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']))) {
               </a>
             </div>
             <div class=\"user-home-right-box-announcement-detail\">
-              <h5>Company Name</h5>
-              <a href=\"userAnnouncementDetail.php?item_id=$item_id\" class=\"user-home-right-box-announcement-detail-link\"><strong>$title</strong></a>
+              <h5>$company_name</h5>
+              <a href=\"userAnnouncementDetail.php?item_id=$announcement_id\" class=\"user-home-right-box-announcement-detail-link\"><strong>$title</strong></a>
             </div>
           </div>";
         endwhile;

@@ -1,13 +1,4 @@
-<?php
-include("session.php");
-
-if (isset($_POST['logout'])) {
-  session_destroy();
-  header("location: userLogin.php");
-}
-
-include("config.php");
-$username = $_SESSION['username'];
+<?php 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +12,8 @@ $username = $_SESSION['username'];
   <link rel="stylesheet" href="CSS/style.css">
 
   <script>
-    // TODO
-  </script>
 
+  </script>
 </head>
 
 <body>
@@ -46,7 +36,7 @@ $username = $_SESSION['username'];
           <li class="nav-item nav-links">
             <a class="nav-link" href="userProfile.php">Your Profile</a>
           </li>
-          <li class="nav-item nav-links">
+          <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
               <div>
                 <button class="btn btn-primary btn-large" type="submit" name="logout">Log Out</button>
@@ -58,23 +48,31 @@ $username = $_SESSION['username'];
     </div>
   </nav>
 
-  <div class="user-announcement-detail">
-    <div class="user-announcement-detail-left-box">
-      <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to inbox</a>
+  <div class="new-invite-content">
+    <div class="new-invite-content-header">
+      <h3>Create New Contest</h3>
     </div>
-    <div class="user-announcement-detail-right-box">
-      <div class="user-announcement-detail-right-box-header">
-        <h3>INVITE ID</h3>
+    <div class="new-invite-content-body">
+      <div class="form-floating new-invite-content-title" style="width: 50%; padding: 3px;">
+        <textarea class="form-control" placeholder="Title" id="floatingTextarea" style="resize:none"></textarea>
+        <label for="floatingTextarea">Name</label>
       </div>
-      <div class="user-announcement-detail-right-box-content">
-        <p>
-          User: USER NAME
-        </p>
-        <p>
-          Msg: Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nulla consequuntur reprehenderit culpa a soluta dolorem saepe incidunt dicta reiciendis omnis maxime, deserunt obcaecati qui maiores amet? Voluptatum deleniti optio sed ut dolore, voluptas illo odit iste quasi voluptatem, porro laborum aut veritatis earum ullam nobis accusantium natus asperiores dolorem ducimus quas mollitia!
-        </p>
-        <p>Result: N/A</p>
+      <div class="form-floating new-invite-content-title" style="width: 25%; padding: 3px">
+        <input class="form-control" placeholder="Earliest date" id="floatingTextarea" style="resize:none" type="date"></textarea>
+        <label for="floatingTextarea">Date</label>
       </div>
+      <div class="form-floating new-invite-content-title" style="width: 50%; padding: 3px;">
+        <textarea class="form-control" placeholder="Duration" id="floatingTextarea" style="resize:none" type="number"></textarea>
+        <label for="floatingTextarea">Duration (mins)</label>
+      </div>
+    </div>
+    <div class="new-invite-content-body">
+      <div class="form-floating new-invite-content-title" style="width: 100%; padding: 3px; min-height: 124px">
+        <textarea class="form-control" placeholder="Content" id="floatingTextarea" style="resize:none; height: 100%"></textarea>
+        <label for="floatingTextarea">Content</label>
+      </div>
+    </div>
+    <div class="new-invite-content-body">
       <div class="user-all-announcements-content" style="margin-top: 8px">
         <div class="company-all-announcements-content">
           <h4>CHALLENGES</h4>
@@ -103,8 +101,12 @@ $username = $_SESSION['username'];
         </div>
       </div>
     </div>
-    <div class="user-announcement-detail-rightest-box">
-      <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Go to the interview</a>
+    <div class="new-invite-content-footer">
+      <a href="#" class="btn btn-primary" style="margin-right: 4px">Add new challenge</a>
+      <a href="#" class="btn btn-primary">Send</a>
+    </div>
+    <div class="new-invite-content-footer">
+
     </div>
   </div>
 </body>

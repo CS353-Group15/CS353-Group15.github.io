@@ -1,4 +1,21 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: companyLogin.php");
+}
+
+include("config.php");
+$username = $_SESSION['company_id'];
+
+$rs_sponsored = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Contest " .
+  "WHERE item_id IN ( " .
+  "SELECT contest_id " .
+  "FROM sponsor" .
+  "WHERE company_id = $username)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +90,15 @@
       </div>
       <div class="user-all-announcements-content-bottom">
         <!-- EXAMPLE -->
+        <?php
+        while ($row = mysqli_fetch_array($rs_sponsored)) :
+          $id = $row['item_id'];
+          $name = $row['name'];
+          echo "<div class=\"user-all-announcements-content-bottom-links-box\">" .
+            "<a href=\"companyContestInformation.php?item_id=$id\" class=\"btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links\">$id - $name</a>" .
+            "<button href=\"#\" class=\"btn btn-outline-danger user-all-announcements-content-bottom-links-save\">";
+        endwhile;
+        ?>
         <div class="user-all-announcements-content-bottom-links-box">
           <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">ID-NAME OF THE CONTEST</a>
           <button href="#" class="btn btn-outline-danger user-all-announcements-content-bottom-links-save" onclick="sponsor(1, 'key1')" id="key1">

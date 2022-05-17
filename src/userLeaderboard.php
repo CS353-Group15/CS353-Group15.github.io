@@ -11,9 +11,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/style.css">
 
-  <script>
-
-  </script>
 </head>
 
 <body>
@@ -50,34 +47,43 @@
 
   <div class="user-old-submission">
     <div class="user-old-submission-header">
-      <h1 class="user-old-submission-header-top">
-        Name of the challenge
+      <style>
+        h1 {
+          text-align: center;
+        }
+      </style>
+      <h1 class="user-old-submission-header-top" title="Scroll down to see more">
+        ID-NAME OF THE CONTEST<br>
+        LEADERBOARD
       </h1>
-      <h2 class="user-old-submission-header-bottom" title="scroll down to see more">
-        Old Submissions
-      </h2>
     </div>
-    <div class="user-old-submission-content">
-      <!-- EXAMPLE -->
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <a href="#" class="btn btn-outline-secondary user-old-submission-content-links">DATE-SUBMISSION RESULT</a>
-      <!-- END OF EXAMPLE -->
-      <?php
-      $submission = true;
-
-      if ($submission) {
-        echo "<a href=\"#\" class=\"btn btn-outline-secondary user-old-submission-content-links\">DATE-SUBMISSION RESULT</a>";
-      } else
-        echo "<h4>No old submissions!</h4>";
-      ?>
+    <div class="user-all-announcements-content">
+      <div class="user-all-announcements-content-top">
+        <button class="btn btn-primary ">Back to the Contest</button>
+      </div>
+      <div class="user-all-announcements-content-bottom">
+        <!-- EXAMPLE -->
+        <div class="user-all-announcements-content-bottom-links-box">
+          <ol>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+            <li><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">USERNAME</a></li>
+          </ol>
+        </div>
+      </div>
+      <div class="user-all-announcements-content-bottom">
+        <div class="user-all-announcements-content-bottom-links-box">
+          <ul>
+            <ui><a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links">RANK - USERNAME OF THE CURRENT USER</a></ui>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -1,13 +1,13 @@
-<?php /*
+<?php
 include("session.php");
 
 if (isset($_POST['logout'])) {
   session_destroy();
-  header("location: userLogin.php");
+  header("location: editorLogin.php");
 }
 
 include("config.php");
-$username = $_SESSION['username'];
+$username = $_SESSION['editor_id'];
 $rs_challenges = $mysqli->query("" .
   "SELECT * " .
   "FROM Challenge ");
@@ -18,9 +18,24 @@ $rs_contests = $mysqli->query("" .
   "FROM Contest " .
   "WHERE date >= '$today_date'");
 
-$rs_announcements = $mysqli->query("" .
-  "SELECT * " .
-  "FROM Announcement "); */
+if (isset($_POST['verify'])) {
+  $company_id = $_POST['company_id'];
+  $editor_id = $_SESSION['editor_id'];
+  $query = "INSERT INTO verify(editor_id, company_id) VALUES ('$editor_id', '$company_id')";
+  if ($mysqli->query($query) == TRUE) {
+    echo "<script>alert(\"Verified $company_id!\")</script>";
+  }
+  else {
+    echo "<script>alert(\"Error!\")</script>";
+  }
+}
+
+$rs_not_verified_companies = $mysqli->query("" .
+  "SELECT company_id, name " .
+  "FROM Company " .
+  "WHERE company_id NOT IN ( " .
+  "SELECT company_id " .
+  "FROM verify) ");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,31 +47,16 @@ $rs_announcements = $mysqli->query("" .
   <title>BilkentCodes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/style.css">
-
-  <script>
-
-  </script>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a href="editorHomePage.php" class="navbar-brand">BilkentCodes</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bstarget="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item nav-links">
-            <a class="nav-link" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="yellow" class="bi bi-mailbox" viewBox="0 0 16 16">
-                <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z" />
-                <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z" />
-              </svg>
-            </a>
-          </li>
-          <li class="nav-item nav-links">
-            <a class="nav-link" href="userProfile.php">Your Profile</a>
+            <a class="nav-link" href="editorProfile.php">Your Profile</a>
           </li>
           <li class="nav-item">
             <form action="userHomePage.php" method="POST" id="logout">
@@ -74,40 +74,22 @@ $rs_announcements = $mysqli->query("" .
     <div class="user-home-left-box">
       <div class="user-home-left-box-upper">
         <div class="editor-home-left-box-upper-header">
-          <button class="btn btn-primary">Filter</button>
+          <button class="btn btn-primary invisible">Filter</button>
           <h3 title="Scroll down to see more">Challenges</h3>
           <div class="editor-home-left-box-upper-header-button-group">
-            <button class="btn btn-danger">Create New Coding Challenge</button>
-            <button class="btn btn-danger">Create New Non-Coding Challenge</button>
+            <a href="editorNewCodingChallenge.php" class="btn btn-danger">Create New Coding Challenge</a>
+            <a href="editorNewNonCodingChallenge.php" class="btn btn-danger">Create New Non-Coding Challenge</a>
           </div>
         </div>
         <div class="user-home-left-box-upper-content">
-          <?php /*
+          <?php
           while ($row = mysqli_fetch_array($rs_challenges)) :
             $item_id = $row['item_id'];
             $difficulty = $row['difficulty'];
 
-            echo "<a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">Interview $item_id</a>";
-          endwhile;*/
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-upper-challenge\">$item_id - Challenge</a></div>";
+          endwhile;
           ?>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-upper-challenge">Interview</a>
-          </div>
         </div>
       </div>
       <div class=" user-home-left-box-bottom">
@@ -115,32 +97,17 @@ $rs_announcements = $mysqli->query("" .
           <h3 title="Scroll down to see more">Upcoming Contests</h3>
         </div>
         <div class="user-home-left-box-bottom-content">
-          <?php /*
+          <?php
           while ($row = mysqli_fetch_array($rs_contests)) :
             $item_id = $row['item_id'];
             $name = $row['name'];
 
-            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">Contest $item_id: $name</a></div>";
-          endwhile; */
+            echo "<div class=\"user-all-announcements-content-bottom-links-box\"><a href=\"#\" class=\"btn btn-outline-secondary user-home-left-box-bottom-contest\">$name</a></div>";
+          endwhile;
           ?>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          </div>
-          <div class="user-all-announcements-content-bottom-links-box">
-            <a href="#" class="btn btn-outline-secondary user-home-left-box-bottom-contest">Contest</a>
-          </div>
         </div>
         <div class="user-home-left-box-bottom-footer">
-          <a href="#" class="btn btn-primary user-home-left-box-bottom-button">Create New Contests</a>
+          <a href="editorNewContest.php" class="btn btn-primary user-home-left-box-bottom-button">Create New Contests</a>
         </div>
       </div>
     </div>
@@ -149,43 +116,24 @@ $rs_announcements = $mysqli->query("" .
         <h3 title="Scroll down to see more">Companies</h3>
       </div>
       <div class="user-home-right-box-content">
-        <?php /*
-        while ($row = mysqli_fetch_array($rs_announcements)) :
-          echo
-          "<div class=\"editor-home-right-box-verify\">
-            <div class=\"editor-home-right-box-verify-detail\">
-              <h5 class=\"editor-home-right-box-verify-detail-top\">Company Name</h5>
-              <a href=\"#\" class=\"btn btn-primary\"><strong>Verify</strong></a>
-            </div>
-          </div>";
-        endwhile; */
+        <?php
+        while ($row = mysqli_fetch_array($rs_not_verified_companies)) :
+          $name = $row['name'];
+          $company_id = $row['company_id'];
+          echo "
+           <div class=\"editor-home-right-box-verify\">
+            <h5 class=\"editor-home-right-box-verify-detail-top\">$name</h5>
+            <form action=\"editorHomePage.php\" method=\"POST\">
+             <input type=\"hidden\" name=\"company_id\" value=\"$company_id\">
+             <button class=\"btn btn-primary\" type=\"submit\" name=\"verify\">Verify</button>
+            </form>
+           </div>
+           ";
+        endwhile;
         ?>
-        <!-- DELETE THESE -->
-        <div class="editor-home-right-box-verify">
-          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
-          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-        </div>
-        <div class="editor-home-right-box-verify">
-          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
-          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-        </div>
-        <div class="editor-home-right-box-verify">
-          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
-          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-        </div>
-        <div class="editor-home-right-box-verify">
-          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
-          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-        </div>
-        <div class="editor-home-right-box-verify">
-          <h5 class="editor-home-right-box-verify-detail-top">Company Name Company Name Company Name Company Name</h5>
-          <a href="#" class="btn btn-primary"><strong>Verify</strong></a>
-        </div>
-
-        <!-- UNTIL HERE -->
       </div>
       <div class="user-home-right-box-footer">
-        <a href="#" class="btn btn-primary">View Verified Companies</a>
+        <a href="editorVerifiedCompanies.php" class="btn btn-primary">View Verified Companies</a>
       </div>
     </div>
   </div>

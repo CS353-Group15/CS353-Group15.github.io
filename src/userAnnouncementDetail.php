@@ -14,9 +14,21 @@ $rs_announcement = $mysqli->query("" .
   "WHERE announcement_id = $item_id");
 
 $row = mysqli_fetch_array($rs_announcement);
+
+$rs_announce = $mysqli->query("" .
+  "SELECT name " .
+  "FROM Company " .
+  "WHERE company_id IN ( " .
+  "SELECT company_id " .
+  "FROM announce " .
+  "WHERE announcement_id = $item_id)");
+
+$row_announce = mysqli_fetch_array($rs_announce);
+
 $title = $row['title'];
 $date = $row['date'];
 $description = $row['description'];
+$company_name = $row_announce['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +70,7 @@ $description = $row['description'];
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item nav-links">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="userAllInvites.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="yellow" class="bi bi-mailbox" viewBox="0 0 16 16">
                 <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z" />
                 <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z" />
@@ -87,7 +99,7 @@ $description = $row['description'];
     </div>
     <div class="user-announcement-detail-right-box">
       <div class="user-announcement-detail-right-box-header">
-        <h3><?php echo "company name" . " - " . "$title" ?></h3>
+        <h3><?php echo "" . $company_name . " - " . $title; ?></h3>
         <a href="#" role="button" class="btn btn-outline-danger user-announcement-detail-right-box-header-save">
           <?php
           $saved = 1;
