@@ -22,7 +22,16 @@ $rs_category =
     "WHERE category_name IN ( " .
     "SELECT category_name " .
     "FROM has_category " .
-    "WHERE item_id = $item_id)");
+    "WHERE challenge_id = $item_id)");
+
+$rs_language =
+  $mysqli->query("" .
+    "SELECT language_name " .
+    "FROM ProgrammingLanguage " .
+    "WHERE language_name IN ( " .
+    "SELECT language_name " .
+    "FROM has_language " .
+    "WHERE challenge_id = $item_id)");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +59,7 @@ $rs_category =
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item nav-links">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="userAllInvites.php">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="yellow" class="bi bi-mailbox" viewBox="0 0 16 16">
                 <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z" />
                 <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z" />
@@ -76,7 +85,7 @@ $rs_category =
     <div class="challenge-header">
       <a href="#" class="btn btn-danger">View Solutions</a>
       <div class="challenge-top">
-        ID-NAME OF THE CHALLENGE
+        <?php echo $item_id . " - " . "NAME OF CHALLENGE"; ?>
       </div>
       <a href="#" class="btn btn-success">View Previous Submissions</a>
     </div>
@@ -85,7 +94,12 @@ $rs_category =
         <p>
           <strong>Diffuculty:</strong><?php echo $difficulty; ?>
           <br>
-          <strong>Language:</strong> EXAMPLE 1, EXAMPLE 2, EXAMPLE 3
+          <strong>Language:</strong>
+          <?php
+          while ($language_row = mysqli_fetch_array($rs_language)) :
+            echo $language_row['language_name'] . " ";
+          endwhile;
+          ?>
           <br>
           <strong>Category:</strong>
           <?php
@@ -104,10 +118,13 @@ $rs_category =
       </div>
       <div class="challenge-right">
         <select class="form-select language-selector" aria-label="Select Language">
-          <option selected>Open this select menu</option>
-          <option value="Java">Java</option>
-          <option value="JS">JS</option>
-          <option value="C">C</option>
+          <option selected>Choose Language</option>
+          <?php
+          mysqli_data_seek($rs_language, 0);
+          while ($language_row = mysqli_fetch_array($rs_language)) :
+            echo "<option>" . $language_row['language_name'] . "</option>";
+          endwhile;
+          ?>
         </select>
         <textarea name="challenge-code" id="challenge-code" class="challenge-code" placeholder="// Code Here"></textarea>
       </div>
