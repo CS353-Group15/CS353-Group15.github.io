@@ -4,6 +4,7 @@
     from {
         transform: scale(1);
     }
+
     to {
         transform: scale(1.2);
     }
@@ -14,18 +15,22 @@
         left: 0px;
         top: 0px;
     }
+
     25% {
         left: 100%;
         top: 0px;
     }
+
     50% {
         left: 100%;
         top: 100%;
     }
+
     75% {
         left: 0px;
         top: 100%;
     }
+
     100% {
         left: 0px;
         top: 0px;
@@ -1190,3 +1195,24 @@ a:hover {
 
 
 /* END OF EDITOR VERIFY COMPANIES */
+
+/* LEADERBOARD */
+.company-leaderboard-user {
+    position: relative;
+    width: 90%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.company-leaderboard-message {}
+
+.company-leaderboard-li {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* END OF LEADERBOARD*/
