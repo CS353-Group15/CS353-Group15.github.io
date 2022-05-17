@@ -22,7 +22,12 @@ if (isset($_POST['verify'])) {
   $company_id = $_POST['company_id'];
   $editor_id = $_SESSION['editor_id'];
   $query = "INSERT INTO verify(editor_id, company_id) VALUES ('$editor_id', '$company_id')";
-  $mysqli->query($query);
+  if ($mysqli->query($query) == TRUE) {
+    echo "<script>alert(\"Verified $company_id!\")</script>";
+  }
+  else {
+    echo "<script>alert(\"Error!\")</script>";
+  }
 }
 
 $rs_not_verified_companies = $mysqli->query("" .
