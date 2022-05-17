@@ -58,7 +58,6 @@
             </div>
             <div class="user-announcement-detail-right-box-content">
                 <p>ID: ID</p>
-                <p>Name: NAME</p>
                 <a href="#" class="btn btn-primary">Change password</a>
             </div>
         </div>
