@@ -444,8 +444,8 @@ public class Project {
                                         "(7, 'solution7'), (8, 'solution8')");
 
                         s = conn.createStatement();
-                        s.executeUpdate("INSERT INTO has_challenge(contest_id, challenge_id) VALUES " +
-                                        "(2, 1), (2, 4), (2, 7), (3, 1), (3, 4), (3, 5), (3, 7), (3, 8)");
+                        s.executeUpdate("INSERT INTO has_challenge(contest_id, challenge_id, question_number) VALUES " +
+                                        "(2, 1, 1), (2, 4, 2), (2, 7, 3), (3, 1, 1), (3, 4, 2), (3, 5, 3), (3, 7, 4), (3, 8, 5)");
 
                         s = conn.createStatement();
                         s.executeUpdate("INSERT INTO sponsor(company_id, contest_id) VALUES " +

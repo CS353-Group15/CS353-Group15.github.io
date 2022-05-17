@@ -76,8 +76,8 @@ $duration = $row['duration'];
 
   <div class="user-announcement-detail">
     <div class="user-announcement-detail-left-box">
-      <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to enrolled contests</a>
-      <a href="#" role="button" class="btn btn-success user-announcement-detail-left-box-button">Back to all contests</a>
+      <a href="userEnrolledContests.php" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to enrolled contests</a>
+      <a href="userAllContests.php" role="button" class="btn btn-success user-announcement-detail-left-box-button">Back to all contests</a>
     </div>
     <div class="user-announcement-detail-right-box">
       <div class="user-announcement-detail-right-box-header">
@@ -110,7 +110,7 @@ $duration = $row['duration'];
       </div>
     </div>
     <div class="user-announcement-detail-left-box">
-      <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Go to the challenges</a>
+      <a href="userChallengeInContest.php?contest_id=<?php echo $item_id; ?>&question_number=<?php echo '1'; ?>" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Go to the challenges</a>
       <a href="#" role="button" class="btn btn-success user-announcement-detail-left-box-button">Go to the leaderboard</a>
     </div>
   </div>
