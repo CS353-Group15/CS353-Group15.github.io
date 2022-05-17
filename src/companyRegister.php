@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+session_start();
+if (isset($_SESSION['company_id'])) {
+  header("location: companyHomePage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
