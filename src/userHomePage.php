@@ -22,6 +22,14 @@ $rs_announcements = $mysqli->query("" .
                     "SELECT * " .
                     "FROM Announcement ");
 
+$rs_categories = $mysqli->query("" .
+                    "SELECT * " .
+                    "FROM Category ");
+
+$rs_languages = $mysqli->query("" .
+                    "SELECT * " .
+                    "FROM ProgrammingLanguage ");
+
 if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_POST['languages']))) {
   $query = "SELECT * " .
            "FROM Challenge NATURAL JOIN has_category NATURAL JOIN has_language ";
@@ -126,7 +134,16 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_
                       tags: true
                   });
 
-                  var valsCategories = ["Trees", "Hashing", "Strings"];
+                  var valsCategories = [<?php
+                  $string = "";
+                  while ($row = mysqli_fetch_array($rs_categories)) :
+                    $category_name = $row['category_name'];
+
+                    $string = $string . "\"$category_name\",";
+                  endwhile;
+                  $string = rtrim($string, ',');
+                  echo $string;
+                   ?>];
 
                   valsCategories.forEach(function(e){
                   if(!s2.find('option:contains(' + e + ')').length)
@@ -140,7 +157,16 @@ if (isset($_POST['filterChallenge']) && (isset($_POST['categories']) || isset($_
                       tags: true
                   });
 
-                  var valsLanguages = ["Java", "Python", "C++"];
+                  var valsLanguages = [<?php
+                  $string = "";
+                  while ($row = mysqli_fetch_array($rs_languages)) :
+                    $language_name = $row['language_name'];
+
+                    $string = $string . "\"$language_name\",";
+                  endwhile;
+                  $string = rtrim($string, ',');
+                  echo $string;
+                   ?>];
 
                   valsLanguages.forEach(function(e){
                   if(!s2.find('option:contains(' + e + ')').length)
