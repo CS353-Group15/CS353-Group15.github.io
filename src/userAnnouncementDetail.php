@@ -23,7 +23,7 @@ $rs_announce = $mysqli->query("" .
   "FROM announce " .
   "WHERE announcement_id = $item_id)");
 
-$row_announce = $mysqli_fetch_array($rs_announce);
+$row_announce = mysqli_fetch_array($rs_announce);
 
 $title = $row['title'];
 $date = $row['date'];
