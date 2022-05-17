@@ -3,32 +3,21 @@ include("session.php");
 
 if (isset($_POST['logout'])) {
   session_destroy();
-  header("location: userLogin.php");
+  header("location: editorLogin.php");
 }
 
 $item_id = $_GET['item_id'];
 
-$rs_announcement = $mysqli->query("" .
+$rs_contest = $mysqli->query("" .
   "SELECT * " .
-  "FROM Announcement " .
-  "WHERE announcement_id = $item_id");
+  "FROM Contest " .
+  "WHERE item_id = $item_id");
 
-$row = mysqli_fetch_array($rs_announcement);
-
-$rs_announce = $mysqli->query("" .
-  "SELECT name " .
-  "FROM Company " .
-  "WHERE company_id IN ( " .
-  "SELECT company_id " .
-  "FROM announce " .
-  "WHERE announcement_id = $item_id)");
-
-$row_announce = $mysqli_fetch_array($rs_announce);
-
-$title = $row['title'];
+$row = mysqli_fetch_array($rs_contest);
+$name = $row['name'];
+$desc = $row['description'];
 $date = $row['date'];
-$description = $row['description'];
-$company_name = $row_announce['name'];
+$duration = $row['duration'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +31,8 @@ $company_name = $row_announce['name'];
   <link rel="stylesheet" href="CSS/style.css">
 
   <script>
-    function save(saved, id) {
-      if (saved) {
+    function enroll(enroll, id) {
+      if (enrolled) {
         document.getElementById(id).innerHTML =
           "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-bookmarks' viewBox='0 0 16 16'>" +
           "<path d = 'M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z'/>" +
@@ -58,6 +47,7 @@ $company_name = $row_announce['name'];
       }
     }
   </script>
+
 </head>
 
 <body>
@@ -94,35 +84,30 @@ $company_name = $row_announce['name'];
 
   <div class="user-announcement-detail">
     <div class="user-announcement-detail-left-box">
-      <a href="userSavedAnnouncements.php" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to saved announcements</a>
-      <a href="userAllAnnouncements.php" role="button" class="btn btn-success user-announcement-detail-left-box-button">Back to all announcements</a>
+      <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Back to enrolled contests</a>
+      <a href="#" role="button" class="btn btn-success user-announcement-detail-left-box-button">Back to all contests</a>
     </div>
     <div class="user-announcement-detail-right-box">
       <div class="user-announcement-detail-right-box-header">
-        <h3><?php echo "" . $company_name . " - " . $title; ?></h3>
-        <a href="#" role="button" class="btn btn-outline-danger user-announcement-detail-right-box-header-save">
-          <?php
-          $saved = 1;
-          if (!$saved) {
-            echo "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" class=\"bi bi-bookmarks\" viewBox=\"0 0 16 16\">
-                      <path d=\"M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z\" />
-                      <path d=\"M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z\" />
-                    </svg>";
-          } else {
-            echo "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"currentColor\" class=\"bi bi-bookmarks-fill\" viewBox=\"0 0 16 16\">
-                      <path d=\"M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4z\"/>
-                      <path d=\"M4.268 1A2 2 0 0 1 6 0h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z\"/>
-                    </svg>";
-          }
-          ?>
-        </a>
+        <h3><?php echo $item_id . " - " . $name; ?></h3>
       </div>
       <div class="user-announcement-detail-right-box-content">
         <p>
-          <?php echo $description; ?>
+          <strong>Date: </strong><?php echo $date; ?>
+          <br>
+          <strong>Duration: </strong><?php echo $duration; ?>
+          <br>
+          <?php echo $desc; ?>
         </p>
       </div>
     </div>
+    <div class="user-announcement-detail-left-box">
+      <a href="#" role="button" class="btn btn-primary user-announcement-detail-left-box-button">Go to the challenges</a>
+      <a href="#" role="button" class="btn btn-success user-announcement-detail-left-box-button">Go to the leaderboard</a>
+    </div>
+  </div>
+  <div class="user-announcement-detail-footer">
+    <a href="#" class="btn btn-primary">Enroll</a>
   </div>
 </body>
 

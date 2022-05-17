@@ -1,5 +1,22 @@
 <?php
+include("session.php");
+
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header("location: editorLogin.php");
+}
+
+include("config.php");
+$username = $_SESSION['editor_id'];
+
+$rs_unverified = $mysqli->query("" .
+  "SELECT * " .
+  "FROM Company " .
+  "WHERE company_id NOT IN ( " .
+  "SELECT company_id " .
+  "FROM verify) ");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,56 +87,19 @@
     </div>
     <div class="user-all-announcements-content">
       <div class="user-all-announcements-content-bottom">
-        <!-- EXAMPLE -->
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <div class="new-verify-company-footer">
-          <a href="#" class="btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links" style="height: 42px;">COMPANY ID - COMPANY NAME</a>
-          <a href="#" class="btn btn-primary" style="height: 42px;">Verify</a>
-        </div>
-        <!-- END OF EXAMPLE -->
-
+        <?php
+        while ($row = mysqli_fetch_array($rs_unverified)) :
+          $name = $row['name'];
+          $id = $row['company_id'];
+          echo "<div class=\"new-verify-company-footer\">" .
+            "<a href=\"#\" class=\"btn btn-outline-secondary btn-lg user-all-announcements-content-bottom-links\" style=\"height: 42px;\">$id - $name</a>" .
+            "<a href=\"#\" class=\"btn btn-primary\" style=\"height: 42px;\">Verify</a>" .
+            "</div>";
+        endwhile;
+        ?>
       </div>
       <div class="user-all-announcements-content-footer">
-        <a href="#" class="btn btn-primary">View verified companies</a>
+        <a href="editorVerifiedCompanies.php" class="btn btn-primary">View verified companies</a>
       </div>
     </div>
   </div>
